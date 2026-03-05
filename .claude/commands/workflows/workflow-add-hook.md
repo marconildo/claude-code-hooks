@@ -130,7 +130,15 @@ Read `CLAUDE.md` at the project root and update any stale values:
 
 ## Step 6: Verify
 
-Count hooks across all files and print a summary:
+**After all edits, re-read every modified file and confirm the new hook name appears.** This is critical — do NOT rely on the edit tool succeeding; grep each file for the hook name.
+
+Run these verifications:
+1. `grep -c "<HookEventName>" .claude/settings.json` — must return ≥1
+2. `grep -c "<HookEventName>" install/settings-mac.json` — must return ≥1
+3. `grep -c "<HookEventName>" install/settings-linux.json` — must return ≥1
+4. `grep -c "<HookEventName>" install/settings-windows.json` — must return ≥1
+
+Count hooks across all files and print a summary. **All counts must match the expected new total — if ANY count is wrong, fix it before finishing.**
 
 ```
 Hook Addition Summary: <HookEventName>
@@ -148,6 +156,8 @@ README.md:        changelog ✓/✗
 presentation:     N slides ✓/✗
 test-agent:       N hooks ✓/✗
 ```
+
+**If any line shows ✗, stop and fix it before declaring done.**
 
 ---
 
