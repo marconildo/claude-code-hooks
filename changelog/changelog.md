@@ -203,3 +203,14 @@
 | 6 | LOW | Presentation | Fix InstructionsLoaded slide version from "v2.1.64" to "v2.1.69" | ✅ COMPLETE (updated presentation slide) |
 | 7 | LOW | Schema Discovery | Elicitation/ElicitationResult hidden hooks in schema — monitor | ✋ ON HOLD (recurring since 2026-03-04; waiting for official documentation) |
 | 8 | LOW | Agent Hook Docs | Re-test agent frontmatter hooks when upstream #27153 resolves | ✋ ON HOLD (recurring since 2026-02-20; upstream issue [#27153](https://github.com/anthropics/claude-code/issues/27153) still open) |
+
+---
+
+## [2026-03-07 06:27 AM PKT] Claude Code v2.1.71
+
+| # | Priority | Type | Action | Status |
+|---|----------|------|--------|--------|
+| 1 | LOW | Environment Variables | Add `${CLAUDE_SKILL_DIR}` to HOOKS-README env vars table (v2.1.69, skill-specific) | ✅ COMPLETE (added to env vars table) |
+| 2 | LOW | Orphan Cleanup | Remove empty `.claude/hooks/sounds/elicitation/` orphan directory (no sound files, not in any map) | ✅ COMPLETE (removed empty directory) |
+| 3 | LOW | Schema Discovery | Elicitation/ElicitationResult hidden hooks in schema — monitor | ✋ ON HOLD (recurring since 2026-03-04; waiting for official documentation) |
+| 4 | LOW | Agent Hook Docs | Re-test agent frontmatter hooks when upstream #27153 resolves | ✋ ON HOLD (recurring since 2026-02-20; upstream issue [#27153](https://github.com/anthropics/claude-code/issues/27153) still open) |

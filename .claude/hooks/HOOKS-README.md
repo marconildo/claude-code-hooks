@@ -367,6 +367,7 @@ Claude Code provides these environment variables to hook scripts:
 | `$CLAUDE_ENV_FILE` | SessionStart only | File path for persisting environment variables for subsequent Bash commands. Use append (`>>`) to preserve variables from other hooks |
 | `${CLAUDE_PLUGIN_ROOT}` | Plugin hooks | Plugin's root directory, for scripts bundled with a plugin |
 | `$CLAUDE_CODE_REMOTE` | All hooks | Set to `"true"` in remote web environments, not set in local CLI |
+| `${CLAUDE_SKILL_DIR}` | Skill hooks | Skill's own directory, for scripts bundled with a skill (since v2.1.69) |
 | `session_id` (via stdin JSON) | All hooks | Current session ID, received as part of the JSON input on stdin (not an environment variable) |
 
 ### Common Input Fields (stdin JSON)
