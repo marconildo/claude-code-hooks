@@ -74,7 +74,12 @@ new hook addition changelogs only
 
 ## Developed by
 
-This project is **100% autopilot** — fully managed by [Claude Code](https://docs.anthropic.com/en/docs/claude-code) with zero human coding. Run `/workflows:workflow-changelog` to scan for new hooks and drift, then `/workflows:workflow-add-hook <HookName>` to add any recommended hook across all files in one command.
+[![Developed by Claude Code](!/developed-by-claude-code.svg)](https://docs.anthropic.com/en/docs/claude-code)
+
+| Workflow | Description |
+|---------|-------------|
+| /workflows:workflow-changelog | Scan for new hooks and drift across all files |
+| /workflows:workflow-add-hook <HookName>* | Add any recommended hook across all files in one command |
 
 ---
 
