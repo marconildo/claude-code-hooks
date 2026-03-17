@@ -70,8 +70,7 @@ new hook addition changelogs only
 
 ## Other CLI Voice Hooks
 
-- [Claude Code Voice Hooks](https://github.com/shanraisshan/claude-code-voice-hooks)
-- [Codex CLI Voice Hooks](https://github.com/shanraisshan/codex-cli-voice-hooks)
+<p><a href="https://github.com/shanraisshan/codex-cli-voice-hooks"><img src="https://raw.githubusercontent.com/shanraisshan/codex-cli-voice-hooks/main/!/codex-speaking.svg" alt="Codex CLI mascot" width="50" height="45" align="middle"></a>&nbsp;&nbsp;<a href="https://github.com/shanraisshan/codex-cli-voice-hooks"><b><ins>codex-cli-voice-hooks</ins></b></a></p>
 
 ## Developed by
 
