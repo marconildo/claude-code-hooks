@@ -278,3 +278,14 @@
 | 3 | LOW | Schema Discovery | Document `asyncRewake` schema option in HOOKS-README (exists since v2.1.72, undocumented in official docs) | ✅ COMPLETE (added Hook Option subsection) |
 | 4 | LOW | Presentation | Fix slide counter initial text "1 / 26" → "1 / 29" in presentation/index.html line 2376 | ✅ COMPLETE (updated to 1 / 29) |
 | 5 | LOW | Agent Hook Docs | Re-test agent frontmatter hooks when upstream #27153 resolves | ✋ ON HOLD (recurring since 2026-02-20; upstream issue [#27153](https://github.com/anthropics/claude-code/issues/27153) still open) |
+
+---
+
+## [2026-03-18 06:39 PM PKT] Claude Code v2.1.78
+
+| # | Priority | Type | Action | Status |
+|---|----------|------|--------|--------|
+| 1 | HIGH | New Hook | `/workflows:workflow-add-hook StopFailure` — new in v2.1.78, fires when turn ends due to API error (rate limit, auth failure) | ✅ COMPLETE (added to all files — 23 hooks consistent across repo) |
+| 2 | LOW | Environment Variables | Add `CLAUDE_PLUGIN_DATA` to HOOKS-README env vars table (plugin persistent data directory, from official hooks reference) | ✅ COMPLETE (added to HOOKS-README env vars table) |
+| 3 | LOW | Schema Discovery | Elicitation/ElicitationResult previously hidden hooks — now in official docs and repo | ✅ COMPLETE (resolved — both hooks added in v2.1.76 run, now fully documented) |
+| 4 | LOW | Agent Hook Docs | Re-test agent frontmatter hooks when upstream #27153 resolves | ✋ ON HOLD (recurring since 2026-02-20; upstream issue [#27153](https://github.com/anthropics/claude-code/issues/27153) still open) |

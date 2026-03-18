@@ -153,12 +153,14 @@ Update both the **flowchart SVG** and the **prompt cards**:
 - Adjust Y coordinates of subsequent elements if inserting in the middle of the flow
 - Update the `viewBox` height if the chart grows taller
 
-**Prompt cards (left panel):**
-- If the new hook fits an existing prompt card's scenario, add a `<span class="hook-tag"><HookEventName></span>` to that card's `.prompt-hooks` div
-- If the hook needs a new demo scenario, add a new `<div class="prompt-card">` with:
-  - A numbered step in `.prompt-step`
+**Prompt cards (left panel) — MANDATORY, never skip:**
+Every hook MUST appear in at least one prompt card with a **real trigger prompt** that shows how to fire the hook. Either:
+- Add `<span class="hook-tag"><HookEventName></span>` to an existing card's `.prompt-hooks` div if the hook fits that scenario, OR
+- Create a new `<div class="prompt-card" data-card-hooks="<HookEventName>">` with:
+  - A numbered step in `.prompt-step` (increment from the last card number)
   - Hook tags in `.prompt-hooks`
-  - Demo command(s) in `.prompt-code` with copy buttons
+  - **A concrete command or prompt that triggers the hook** in `.prompt-code` with copy buttons. Every card MUST have a runnable command (shell `$` prefix) or a Claude prompt (`>` prefix) that actually fires the hook. If the hook requires special setup (e.g. env vars, flags), show the full command including setup.
+- **Numbering rule:** Left column = cards 1 through N, right column = cards N+1 through M. The grid fills left-right by row, so HTML source order alternates: left-1, right-1, left-2, right-2, etc. When adding a card, increment the last number and place it in the correct HTML position to maintain the alternating pattern.
 - Renumber subsequent prompt cards if inserting in the middle
 
 **Branding text:**
@@ -195,6 +197,7 @@ Run these verifications:
 5. `grep -c "<HookEventName>" demo/.claude/settings.json` — must return ≥1
 6. `grep -c "<HookEventName>" demo/.claude/hooks/scripts/demo-hooks.py` — must return ≥1
 7. `grep -c "<HookEventName>" demo/hooks-lifecycle.html` — must return ≥1
+8. `grep -c "data-card-hooks=.*<HookEventName>" demo/hooks-lifecycle.html` — must return ≥1 (prompt card check)
 
 Count hooks across all files and print a summary. **All counts must match the expected new total — if ANY count is wrong, fix it before finishing.**
 

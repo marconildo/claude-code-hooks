@@ -541,7 +541,7 @@
         </div>
         <h1>Claude Code Voice Hooks</h1>
         <p class="subtitle">Explaining Claude Code Voice Hooks and Subagent Hooks</p>
-        <p style="margin-top: 60px; font-size: 0.95rem; color: #888;">As of Claude Code v2.1.77 | March 17, 2026</p>
+        <p style="margin-top: 60px; font-size: 0.95rem; color: #888;">As of Claude Code v2.1.78 | March 18, 2026</p>
     </div>
 
     <!-- Slide 2: Introduction -->
@@ -558,8 +558,8 @@
             <div class="use-case-item">
                 <span class="use-case-icon">🔢</span>
                 <div class="use-case-text">
-                    <strong>22 Hooks Explained</strong>
-                    <span>Claude Code currently supports 22 hooks (as of v2.1.77)</span>
+                    <strong>23 Hooks Explained</strong>
+                    <span>Claude Code currently supports 23 hooks (as of v2.1.78)</span>
                 </div>
             </div>
             <div class="use-case-item">
@@ -580,7 +580,7 @@
                 <span class="use-case-icon">🔊</span>
                 <div class="use-case-text">
                     <strong>Voice Notifications Demo</strong>
-                    <span>This repo integrates all 22 hooks with audio feedback</span>
+                    <span>This repo integrates all 23 hooks with audio feedback</span>
                 </div>
             </div>
         </div>
@@ -596,8 +596,8 @@
 
     <!-- Slide 3: Table of Contents -->
     <div class="slide" data-slide="3">
-        <h1>The 22 Hooks</h1>
-        <p style="margin-top: -30px; margin-bottom: 24px; font-size: 1rem; color: #666;">Claude Code v2.1.77 | March 17, 2026 — More hooks may be added in future versions.</p>
+        <h1>The 23 Hooks</h1>
+        <p style="margin-top: -30px; margin-bottom: 24px; font-size: 1rem; color: #666;">Claude Code v2.1.78 | March 18, 2026 — More hooks may be added in future versions.</p>
 
         <div class="toc-list">
             <div class="toc-item" onclick="goToSlide(5)">
@@ -688,6 +688,10 @@
                 <span class="toc-number">22</span>
                 <span class="toc-name">ElicitationResult</span>
             </div>
+            <div class="toc-item" onclick="goToSlide(27)">
+                <span class="toc-number">23</span>
+                <span class="toc-name">StopFailure</span>
+            </div>
         </div>
     </div>
 
@@ -765,11 +769,12 @@
                     <span class="matcher-tag">InstructionsLoaded</span>
                     <span class="matcher-tag">Elicitation</span>
                     <span class="matcher-tag">ElicitationResult</span>
+                    <span class="matcher-tag">StopFailure</span>
                 </div>
             </div>
         </div>
 
-        <p style="margin-top: 24px;"><strong>Note:</strong> Setup fires separately via <code>--init</code>/<code>--maintenance</code> CLI flags. Notification, TeammateIdle, TaskCompleted, ConfigChange, WorktreeCreate, WorktreeRemove, InstructionsLoaded, Elicitation, and ElicitationResult hooks fire asynchronously at any point during the session — they are not part of the sequential flow above.</p>
+        <p style="margin-top: 24px;"><strong>Note:</strong> Setup fires separately via <code>--init</code>/<code>--maintenance</code> CLI flags. Notification, TeammateIdle, TaskCompleted, ConfigChange, WorktreeCreate, WorktreeRemove, InstructionsLoaded, Elicitation, ElicitationResult, and StopFailure hooks fire asynchronously at any point during the session — they are not part of the sequential flow above.</p>
     </div>
 
     <!-- Slide 5: SessionStart -->
@@ -2108,14 +2113,63 @@
         </div>
     </div>
 
-    <!-- Slide 27: Agent Hooks -->
+    <!-- Slide 27: StopFailure -->
     <div class="slide" data-slide="27">
+        <div class="hook-title">
+            <span class="hook-number">23</span>
+            <span class="hook-name">StopFailure</span>
+            <span class="cannot-block">Cannot Block</span>
+        </div>
+
+        <div class="trigger-box">
+            <h4>When It Triggers</h4>
+            <p>When the turn ends due to an API error (rate limit, auth failure, etc.). Unlike Stop, this fires on error conditions rather than successful completion. Introduced in v2.1.78 to prevent infinite loops when stop hooks re-feed blocking errors to the model.</p>
+        </div>
+
+        <div class="how-to-trigger">
+            <h4>How to Trigger</h4>
+            <p>API error occurs during Claude's response (rate limit exceeded, authentication failure, network error):</p>
+            <div class="trigger-example">Claude processing → API error → StopFailure hook fires</div>
+        </div>
+
+        <h3>Use Cases</h3>
+        <div class="use-cases">
+            <div class="use-case-item">
+                <span class="use-case-icon">🔊</span>
+                <div class="use-case-text">
+                    <strong>Voice: "Stop failure"</strong>
+                    <span>Audio alert when a turn ends due to an API error</span>
+                </div>
+            </div>
+            <div class="use-case-item">
+                <span class="use-case-icon">📊</span>
+                <div class="use-case-text">
+                    <strong>Error Tracking</strong>
+                    <span>Log API failures for monitoring rate limits and auth issues</span>
+                </div>
+            </div>
+            <div class="use-case-item">
+                <span class="use-case-icon">🔔</span>
+                <div class="use-case-text">
+                    <strong>Alert on Failures</strong>
+                    <span>Send desktop notification when API errors interrupt work</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="sound-demo">
+            🔊 Sound: stopfailure.wav — "Stop failure"
+        </div>
+    </div>
+
+    <!-- Slide 28: Agent Hooks -->
+    <div class="slide" data-slide="28">
         <h1>Agent Hooks (Bonus)</h1>
         <p>Claude Code 2.1.0 introduced support for agent-specific hooks defined in agent frontmatter files. These hooks only run within the agent's lifecycle.</p>
 
         <div class="trigger-box">
             <h4>Supported Agent Hooks</h4>
-            <p>Agent frontmatter hooks support <strong>6 of 22 hooks</strong>: PreToolUse, PostToolUse, PermissionRequest, PostToolUseFailure, Stop, and SubagentStop.</p>
+            <p>Agent frontmatter hooks support <strong>6 of 23 hooks</strong>: PreToolUse, PostToolUse, PermissionRequest, PostToolUseFailure, Stop, and SubagentStop.</p>
         </div>
 
         <div class="how-to-trigger">
@@ -2213,8 +2267,8 @@ hooks:
         </div>
     </div>
 
-    <!-- Slide 28: Configuration -->
-    <div class="slide" data-slide="28">
+    <!-- Slide 29: Configuration -->
+    <div class="slide" data-slide="29">
         <h1>Configuration</h1>
         <p>Hooks are configured in <code>.claude/settings.json</code> and can be individually enabled/disabled.</p>
 
@@ -2255,8 +2309,8 @@ hooks:
         </div>
     </div>
 
-    <!-- Slide 29: Summary -->
-    <div class="slide" data-slide="29">
+    <!-- Slide 30: Summary -->
+    <div class="slide" data-slide="30">
         <h1>Summary</h1>
 
         <div class="info-grid">
@@ -2273,6 +2327,7 @@ hooks:
                 <p><strong>InstructionsLoaded</strong> — Instructions loaded into context</p>
                 <p><strong>Elicitation</strong> — MCP server requests input</p>
                 <p><strong>ElicitationResult</strong> — User responds to MCP</p>
+                <p><strong>StopFailure</strong> — Turn ends due to API error</p>
             </div>
             <div class="info-card">
                 <h4>User Interaction</h4>
@@ -2373,7 +2428,7 @@ hooks:
         <button class="nav-btn" id="nextBtn" onclick="nextSlide()">→</button>
     </div>
 
-    <div class="slide-counter" id="slideCounter">1 / 29</div>
+    <div class="slide-counter" id="slideCounter">1 / 30</div>
 
     <div class="keyboard-hint">
         <kbd>←</kbd> <kbd>→</kbd> or <kbd>Space</kbd> to navigate
@@ -2381,7 +2436,7 @@ hooks:
 
     <script>
         let currentSlide = 1;
-        const totalSlides = 29;
+        const totalSlides = 30;
 
         function showSlide(n) {
             const slides = document.querySelectorAll('.slide');

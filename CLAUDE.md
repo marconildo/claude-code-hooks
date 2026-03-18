@@ -1,6 +1,6 @@
 # Claude Code Voice Hooks
 
-Voice notification system for all 22 Claude Code hooks. Plays sound effects when hook events fire.
+Voice notification system for all 23 Claude Code hooks. Plays sound effects when hook events fire.
 
 ## Project Structure
 
@@ -11,10 +11,10 @@ Voice notification system for all 22 Claude Code hooks. Plays sound effects when
     scripts/hooks.py         # Main hook handler — HOOK_SOUND_MAP + AGENT_HOOK_SOUND_MAP
     config/hooks-config.json # Per-hook disable toggles (disableXxxHook pattern)
     sounds/<hookname>/       # Sound files — each hook needs .mp3 + .wav
-    HOOKS-README.md          # Full hook documentation (22 hooks)
+    HOOKS-README.md          # Full hook documentation (23 hooks)
   agents/
     workflows/workflow-changelog-agent.md  # Research agent for drift detection
-    claude-code-test-agent.md              # Tests all 22 hooks
+    claude-code-test-agent.md              # Tests all 23 hooks
   commands/workflows/
     workflow-changelog.md    # Coordinator: launches agents, merges findings, reports drift
     workflow-add-hook.md     # Adds a new hook across all 14 files (incl. demo)
@@ -22,7 +22,7 @@ install/
   settings-mac.json          # python3 + ${CLAUDE_PROJECT_DIR}
   settings-linux.json        # python3 + ${CLAUDE_PROJECT_DIR}
   settings-windows.json      # python + relative path
-presentation/index.html      # 29-slide presentation (totalSlides = 29)
+presentation/index.html      # 30-slide presentation (totalSlides = 30)
 changelog/
   changelog.md               # Accumulated workflow-changelog run history
   verification-checklist.md  # 82+ regression rules across 6 categories
@@ -30,7 +30,7 @@ changelog/
 
 ## Critical: Hook Count Consistency
 
-The hook count (currently **22**) MUST match across ALL of these locations:
+The hook count (currently **23**) MUST match across ALL of these locations:
 - `.claude/settings.json` hook entries
 - `install/settings-mac.json`, `settings-linux.json`, `settings-windows.json`
 - `hooks.py` HOOK_SOUND_MAP keys + docstring count
@@ -47,7 +47,7 @@ When adding a hook, use `/workflows:workflow-add-hook` — it updates all 14 fil
 
 ## Agent Hooks
 
-Only **6 of 22** hooks fire in agent sessions: PreToolUse, PostToolUse, PermissionRequest, PostToolUseFailure, Stop, SubagentStop. These are mapped in `AGENT_HOOK_SOUND_MAP` in hooks.py.
+Only **6 of 23** hooks fire in agent sessions: PreToolUse, PostToolUse, PermissionRequest, PostToolUseFailure, Stop, SubagentStop. These are mapped in `AGENT_HOOK_SOUND_MAP` in hooks.py.
 
 ## Workflows
 
@@ -71,4 +71,4 @@ Persistent memory file: `~/.claude/projects/-Users-shayanraees-Documents-Github-
 
 ## Schema Note
 
-`.claude/settings.json` is validated against Claude Code's bundled JSON schema. The schema's `propertyNames` enum may contain hidden/undocumented hooks not yet in the changelog. The workflow-changelog agent checks for these. As of v2.1.77, all 22 schema hooks are implemented in the repo. No hidden/undocumented hooks remain.
+`.claude/settings.json` is validated against Claude Code's bundled JSON schema. The schema's `propertyNames` enum may contain hidden/undocumented hooks not yet in the changelog. The workflow-changelog agent checks for these. As of v2.1.78, all 23 schema hooks are implemented in the repo. No hidden/undocumented hooks remain.
