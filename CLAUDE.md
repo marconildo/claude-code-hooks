@@ -71,4 +71,4 @@ Persistent memory file: `~/.claude/projects/-Users-shayanraees-Documents-Github-
 
 ## Schema Note
 
-`.claude/settings.json` is validated against Claude Code's bundled JSON schema. The schema's `propertyNames` enum may contain hidden/undocumented hooks not yet in the changelog. The workflow-changelog agent checks for these. As of v2.1.78, all 23 schema hooks are implemented in the repo. No hidden/undocumented hooks remain.
+`.claude/settings.json` is validated against Claude Code's bundled JSON schema. The schema's `propertyNames` enum may contain hidden/undocumented hooks not yet in the changelog. The workflow-changelog agent checks for these. As of v2.1.79, all 23 schema hooks are implemented in the repo. No hidden/undocumented hooks remain.

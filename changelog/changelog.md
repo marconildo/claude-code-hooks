@@ -289,3 +289,17 @@
 | 2 | LOW | Environment Variables | Add `CLAUDE_PLUGIN_DATA` to HOOKS-README env vars table (plugin persistent data directory, from official hooks reference) | ✅ COMPLETE (added to HOOKS-README env vars table) |
 | 3 | LOW | Schema Discovery | Elicitation/ElicitationResult previously hidden hooks — now in official docs and repo | ✅ COMPLETE (resolved — both hooks added in v2.1.76 run, now fully documented) |
 | 4 | LOW | Agent Hook Docs | Re-test agent frontmatter hooks when upstream #27153 resolves | ✋ ON HOLD (recurring since 2026-02-20; upstream issue [#27153](https://github.com/anthropics/claude-code/issues/27153) still open) |
+
+---
+
+## [2026-03-19 12:19 PM PKT] Claude Code v2.1.79
+
+| # | Priority | Type | Action | Status |
+|---|----------|------|--------|--------|
+| 1 | HIGH | New Input Field | Add `error`, `error_details`, `last_assistant_message` to StopFailure Options column in HOOKS-README | ✅ COMPLETE (added 3 input fields to Options column) |
+| 2 | HIGH | Matcher/Schema | Add InstructionsLoaded matcher (`load_reason`: session_start, nested_traversal, path_glob_match, include, compact) to Per-Hook Matcher Reference table | ✅ COMPLETE (added to matcher table) |
+| 3 | HIGH | Matcher/Schema | Add StopFailure matcher (`error`: rate_limit, authentication_failed, billing_error, invalid_request, server_error, max_output_tokens, unknown) to Per-Hook Matcher Reference table | ✅ COMPLETE (added to matcher table) |
+| 4 | MEDIUM | Config Drift | Fix HOOKS-README line 412 stale anchor `#hook-events-overview---official-22-hooks` → `#hook-events-overview---official-23-hooks` | ✅ COMPLETE (fixed internal anchor) |
+| 5 | MEDIUM | Not-in-Docs | Remove StopFailure from "Not in Official Docs" table; update Setup note | ❌ INVALID (user confirmed StopFailure is not in official docs — keep in table) |
+| 6 | LOW | Hook Options Table | Fix ElicitationResult Options: remove `action`/`content` (output fields), add `user_response`, `message` (input fields) | ✅ COMPLETE (fixed input/output field confusion) |
+| 7 | LOW | Agent Hook Docs | Re-test agent frontmatter hooks when upstream #27153 resolves | ✋ ON HOLD (recurring since 2026-02-20; upstream issue [#27153](https://github.com/anthropics/claude-code/issues/27153) still open) |

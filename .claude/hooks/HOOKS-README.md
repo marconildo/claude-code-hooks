@@ -27,8 +27,8 @@ Claude Code provides several hook events that run at different points in the wor
 | 19 | `WorktreeRemove` | Runs when agent worktree isolation removes worktrees for custom VCS teardown | `async`, `timeout: 5000`, `worktree_path` |
 | 20 | `InstructionsLoaded` | Runs when CLAUDE.md or `.claude/rules/*.md` files are loaded into context | `async`, `timeout: 5000`, `file_path`, `memory_type`, `load_reason`, `globs`, `trigger_file_path`, `parent_file_path` |
 | 21 | `Elicitation` | Runs when an MCP server requests user input during a tool call | `async`, `timeout: 5000`, `mcp_server_name`, `message`, `mode`, `url`, `elicitation_id`, `requested_schema` |
-| 22 | `ElicitationResult` | Runs after a user responds to an MCP elicitation, before the response is sent back to the server | `async`, `timeout: 5000`, `mcp_server_name`, `action`, `content`, `mode`, `elicitation_id` |
-| 23 | `StopFailure` | Runs when the turn ends due to an API error (rate limit, auth failure, etc.) | `async`, `timeout: 5000` |
+| 22 | `ElicitationResult` | Runs after a user responds to an MCP elicitation, before the response is sent back to the server | `async`, `timeout: 5000`, `mcp_server_name`, `user_response`, `message`, `mode`, `elicitation_id` |
+| 23 | `StopFailure` | Runs when the turn ends due to an API error (rate limit, auth failure, etc.) | `async`, `timeout: 5000`, `error`, `error_details`, `last_assistant_message` |
 
 > **Note:** Hooks 15-16 (`TeammateIdle` and `TaskCompleted`) require the experimental agent teams feature. Set `CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1` when launching Claude Code to enable them.
 
@@ -409,7 +409,7 @@ Every hook receives a JSON object on stdin containing these common fields, in ad
 | `agent_id` | string | Unique subagent identifier. Present when the hook fires inside a subagent context (since v2.1.69) |
 | `agent_type` | string | Agent type name (e.g. `Bash`, `Explore`, `Plan`, or custom). Present when using `--agent <name>` flag or inside a subagent (since v2.1.69) |
 
-> **Note:** Hook-specific fields (e.g., `tool_name` for PreToolUse, `last_assistant_message` for Stop) are listed in the Options column of the [Hook Events Overview](#hook-events-overview---official-22-hooks) table above.
+> **Note:** Hook-specific fields (e.g., `tool_name` for PreToolUse, `last_assistant_message` for Stop) are listed in the Options column of the [Hook Events Overview](#hook-events-overview---official-23-hooks) table above.
 
 ## Hooks Management Commands
 
@@ -461,8 +461,8 @@ Matchers filter which events trigger a hook. Not all hooks support matchers — 
 | `TaskCompleted` | — | No matcher support | Always fires |
 | `WorktreeCreate` | — | No matcher support | Always fires |
 | `WorktreeRemove` | — | No matcher support | Always fires |
-| `InstructionsLoaded` | — | No matcher support | Always fires |
-| `StopFailure` | — | No matcher support | Always fires |
+| `InstructionsLoaded` | `load_reason` | `session_start`, `nested_traversal`, `path_glob_match`, `include`, `compact` | `"matcher": "session_start"` |
+| `StopFailure` | `error` | `rate_limit`, `authentication_failed`, `billing_error`, `invalid_request`, `server_error`, `max_output_tokens`, `unknown` | `"matcher": "rate_limit"` |
 | `Setup` | — | No matcher support | Always fires |
 
 ## Known Issues & Workarounds
