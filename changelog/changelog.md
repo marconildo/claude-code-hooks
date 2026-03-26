@@ -333,3 +333,19 @@
 | 2 | HIGH | New Hook | `/workflows:workflow-add-hook FileChanged` — v2.1.83, fires when files change | ✅ COMPLETE (added to all files — 25 hooks consistent across repo) |
 | 3 | MEDIUM | Not-in-Docs Table | Update StopFailure entry — now confirmed in official docs by both agents; update Setup note "21 hooks" → "22 hooks listed, Setup excluded" | ✅ COMPLETE (removed StopFailure row, updated Setup note to "22 hooks listed, Setup excluded") |
 | 4 | LOW | Agent Hook Docs | Re-test agent frontmatter hooks when upstream #27153 resolves | ✋ ON HOLD (recurring since 2026-02-20; upstream issue [#27153](https://github.com/anthropics/claude-code/issues/27153) still open) |
+
+---
+
+## [2026-03-26 08:39 PM PKT] Claude Code v2.1.84
+
+| # | Priority | Type | Action | Status |
+|---|----------|------|--------|--------|
+| 1 | HIGH | New Hook | `/workflows:workflow-add-hook TaskCreated` — v2.1.84, fires when task created via TaskCreate tool | ✅ COMPLETE (added to all 14 files — 26 hooks consistent across repo) |
+| 2 | HIGH | Not-in-Docs Table | Remove CwdChanged and FileChanged rows from HOOKS-README Not-in-Docs table — both now in official docs | ✅ COMPLETE (removed both rows from Not-in-Docs table) |
+| 3 | HIGH | Not-in-Docs Table | Update Setup note from "(22 hooks listed, Setup excluded)" to "(25 hooks listed, Setup excluded)" | ✅ COMPLETE (updated to 25 hooks listed) |
+| 4 | MEDIUM | Hook Options | Add `old_cwd`, `new_cwd` to CwdChanged Options column in HOOKS-README | ✅ COMPLETE (added to Options column) |
+| 5 | MEDIUM | Env Var Docs | Fix `$CLAUDE_ENV_FILE` from "SessionStart only" to "SessionStart, CwdChanged, FileChanged" | ✅ COMPLETE (updated availability scope) |
+| 6 | MEDIUM | Matcher Table | Add CwdChanged (no matcher) and FileChanged (filename basename) to Per-Hook Matcher Reference table | ✅ COMPLETE (added both entries to matcher table) |
+| 7 | MEDIUM | Config Drift | Fix HOOKS-README stale anchor `#official-23-hooks` → `#official-26-hooks` | ✅ COMPLETE (updated anchor to match new heading) |
+| 8 | MEDIUM | Can-Block Status | Investigate PostToolUseFailure — both agents report official docs say Cannot Block, but repo has Can Block since v2.1.69 | ✋ ON HOLD (needs investigation — keeping current Can Block status until confirmed) |
+| 9 | LOW | Agent Hook Docs | Re-test agent frontmatter hooks when upstream #27153 resolves | ✋ ON HOLD (recurring since 2026-02-20; upstream issue [#27153](https://github.com/anthropics/claude-code/issues/27153) still open) |

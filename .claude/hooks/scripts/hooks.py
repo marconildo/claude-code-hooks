@@ -3,7 +3,7 @@
 Claude Code Hook Handler
 =============================================
 This script handles events from Claude Code and plays sounds for different hook events.
-Supports all 25 Claude Code hooks: https://code.claude.com/docs/en/hooks
+Supports all 26 Claude Code hooks: https://code.claude.com/docs/en/hooks
 
 Special handling for git commits: plays pretooluse-git-committing.mp3
 
@@ -44,6 +44,7 @@ HOOK_SOUND_MAP = {
     "SessionEnd": "sessionend",
     "Setup": "setup",
     "TeammateIdle": "teammateidle",
+    "TaskCreated": "taskcreated",
     "TaskCompleted": "taskcompleted",
     "ConfigChange": "configchange",
     "WorktreeCreate": "worktreecreate",

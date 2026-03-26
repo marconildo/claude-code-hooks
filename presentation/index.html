@@ -541,7 +541,7 @@
         </div>
         <h1>Claude Code Hooks</h1>
         <p class="subtitle">Explaining Claude Code Hooks and Subagent Hooks</p>
-        <p style="margin-top: 60px; font-size: 0.95rem; color: #888;">As of Claude Code v2.1.83 | March 25, 2026</p>
+        <p style="margin-top: 60px; font-size: 0.95rem; color: #888;">As of Claude Code v2.1.84 | March 26, 2026</p>
     </div>
 
     <!-- Slide 2: Introduction -->
@@ -558,8 +558,8 @@
             <div class="use-case-item">
                 <span class="use-case-icon">🔢</span>
                 <div class="use-case-text">
-                    <strong>25 Hooks Explained</strong>
-                    <span>Claude Code currently supports 25 hooks (as of v2.1.83)</span>
+                    <strong>26 Hooks Explained</strong>
+                    <span>Claude Code currently supports 26 hooks (as of v2.1.84)</span>
                 </div>
             </div>
             <div class="use-case-item">
@@ -580,7 +580,7 @@
                 <span class="use-case-icon">🔊</span>
                 <div class="use-case-text">
                     <strong>Voice Notifications Demo</strong>
-                    <span>This repo integrates all 25 hooks with audio feedback</span>
+                    <span>This repo integrates all 26 hooks with audio feedback</span>
                 </div>
             </div>
         </div>
@@ -596,8 +596,8 @@
 
     <!-- Slide 3: Table of Contents -->
     <div class="slide" data-slide="3">
-        <h1>The 25 Hooks</h1>
-        <p style="margin-top: -30px; margin-bottom: 24px; font-size: 1rem; color: #666;">Claude Code v2.1.83 | March 25, 2026 — More hooks may be added in future versions.</p>
+        <h1>The 26 Hooks</h1>
+        <p style="margin-top: -30px; margin-bottom: 24px; font-size: 1rem; color: #666;">Claude Code v2.1.84 | March 26, 2026 — More hooks may be added in future versions.</p>
 
         <div class="toc-list">
             <div class="toc-item" onclick="goToSlide(5)">
@@ -666,38 +666,42 @@
             </div>
             <div class="toc-item" onclick="goToSlide(21)">
                 <span class="toc-number">17</span>
-                <span class="toc-name">ConfigChange</span>
+                <span class="toc-name">TaskCreated</span>
             </div>
             <div class="toc-item" onclick="goToSlide(22)">
                 <span class="toc-number">18</span>
-                <span class="toc-name">WorktreeCreate</span>
+                <span class="toc-name">ConfigChange</span>
             </div>
             <div class="toc-item" onclick="goToSlide(23)">
                 <span class="toc-number">19</span>
-                <span class="toc-name">WorktreeRemove</span>
+                <span class="toc-name">WorktreeCreate</span>
             </div>
             <div class="toc-item" onclick="goToSlide(24)">
                 <span class="toc-number">20</span>
-                <span class="toc-name">InstructionsLoaded</span>
+                <span class="toc-name">WorktreeRemove</span>
             </div>
             <div class="toc-item" onclick="goToSlide(25)">
                 <span class="toc-number">21</span>
-                <span class="toc-name">Elicitation</span>
+                <span class="toc-name">InstructionsLoaded</span>
             </div>
             <div class="toc-item" onclick="goToSlide(26)">
                 <span class="toc-number">22</span>
-                <span class="toc-name">ElicitationResult</span>
+                <span class="toc-name">Elicitation</span>
             </div>
             <div class="toc-item" onclick="goToSlide(27)">
                 <span class="toc-number">23</span>
-                <span class="toc-name">StopFailure</span>
+                <span class="toc-name">ElicitationResult</span>
             </div>
             <div class="toc-item" onclick="goToSlide(28)">
                 <span class="toc-number">24</span>
-                <span class="toc-name">CwdChanged</span>
+                <span class="toc-name">StopFailure</span>
             </div>
             <div class="toc-item" onclick="goToSlide(29)">
                 <span class="toc-number">25</span>
+                <span class="toc-name">CwdChanged</span>
+            </div>
+            <div class="toc-item" onclick="goToSlide(30)">
+                <span class="toc-number">26</span>
                 <span class="toc-name">FileChanged</span>
             </div>
         </div>
@@ -771,6 +775,7 @@
                     <span class="matcher-tag">Notification</span>
                     <span class="matcher-tag">TeammateIdle</span>
                     <span class="matcher-tag">TaskCompleted</span>
+                    <span class="matcher-tag">TaskCreated</span>
                     <span class="matcher-tag">ConfigChange</span>
                     <span class="matcher-tag">WorktreeCreate</span>
                     <span class="matcher-tag">WorktreeRemove</span>
@@ -782,7 +787,7 @@
             </div>
         </div>
 
-        <p style="margin-top: 24px;"><strong>Note:</strong> Setup fires separately via <code>--init</code>/<code>--maintenance</code> CLI flags. Notification, TeammateIdle, TaskCompleted, ConfigChange, WorktreeCreate, WorktreeRemove, InstructionsLoaded, Elicitation, ElicitationResult, StopFailure, CwdChanged, and FileChanged hooks fire asynchronously at any point during the session — they are not part of the sequential flow above.</p>
+        <p style="margin-top: 24px;"><strong>Note:</strong> Setup fires separately via <code>--init</code>/<code>--maintenance</code> CLI flags. Notification, TeammateIdle, TaskCompleted, TaskCreated, ConfigChange, WorktreeCreate, WorktreeRemove, InstructionsLoaded, Elicitation, ElicitationResult, StopFailure, CwdChanged, and FileChanged hooks fire asynchronously at any point during the session — they are not part of the sequential flow above.</p>
     </div>
 
     <!-- Slide 5: SessionStart -->
@@ -1776,8 +1781,70 @@
         </div>
     </div>
 
-    <!-- Slide 21: ConfigChange -->
+    <!-- Slide 21: TaskCreated -->
     <div class="slide" data-slide="21">
+        <div class="hook-title">
+            <span class="hook-number">16</span>
+            <span class="hook-name">TaskCreated</span>
+            <span class="can-block">Can Block</span>
+        </div>
+
+        <div class="trigger-box">
+            <h4>When It Triggers</h4>
+            <p>Runs when a task is being created via the TaskCreate tool. Fires in experimental agent teams sessions when a teammate creates a new task.</p>
+        </div>
+
+        <div class="how-to-trigger">
+            <h4>How to Trigger</h4>
+            <p>Fires when a teammate creates a task via TaskCreate:</p>
+            <div class="trigger-example">$ CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1 claude</div>
+            <p style="margin-top: 12px;">When a teammate uses the TaskCreate tool, this hook fires before the task is finalized.</p>
+        </div>
+
+        <div class="info-grid" style="margin: 16px 0;">
+            <div class="info-card">
+                <h4>Input Fields</h4>
+                <p><code>task_id</code> — Unique identifier for the task</p>
+                <p><code>task_subject</code> — Subject line of the task</p>
+                <p><code>task_description</code> — Full description of the task</p>
+                <p><code>teammate_name</code> — Name of the teammate creating the task</p>
+                <p><code>team_name</code> — Name of the team</p>
+            </div>
+        </div>
+
+        <h3>Use Cases</h3>
+        <div class="use-cases">
+            <div class="use-case-item">
+                <span class="use-case-icon">📝</span>
+                <div class="use-case-text">
+                    <strong>Enforce Task Naming Conventions</strong>
+                    <span>Validate that task subjects follow team naming standards</span>
+                </div>
+            </div>
+            <div class="use-case-item">
+                <span class="use-case-icon">✅</span>
+                <div class="use-case-text">
+                    <strong>Validate Task Descriptions</strong>
+                    <span>Ensure task descriptions contain required fields or minimum detail</span>
+                </div>
+            </div>
+            <div class="use-case-item">
+                <span class="use-case-icon">🚫</span>
+                <div class="use-case-text">
+                    <strong>Prevent Unauthorized Task Creation</strong>
+                    <span>Block task creation from unauthorized teammates or teams</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="sound-demo">
+            🔊 Sound: taskcreated.wav — "Task created"
+        </div>
+        <p style="margin-top: 8px; font-size: 0.85rem; color: #999;">Added in v2.1.84</p>
+    </div>
+
+    <!-- Slide 22: ConfigChange -->
+    <div class="slide" data-slide="22">
         <div class="hook-title">
             <span class="hook-number">17</span>
             <span class="hook-name">ConfigChange</span>
@@ -1843,8 +1910,8 @@
         </div>
     </div>
 
-    <!-- Slide 22: WorktreeCreate -->
-    <div class="slide" data-slide="22">
+    <!-- Slide 23: WorktreeCreate -->
+    <div class="slide" data-slide="23">
         <div class="hook-title">
             <span class="hook-number">18</span>
             <span class="hook-name">WorktreeCreate</span>
@@ -1900,8 +1967,8 @@
         </div>
     </div>
 
-    <!-- Slide 23: WorktreeRemove -->
-    <div class="slide" data-slide="23">
+    <!-- Slide 24: WorktreeRemove -->
+    <div class="slide" data-slide="24">
         <div class="hook-title">
             <span class="hook-number">19</span>
             <span class="hook-name">WorktreeRemove</span>
@@ -1957,8 +2024,8 @@
         </div>
     </div>
 
-    <!-- Slide 24: InstructionsLoaded -->
-    <div class="slide" data-slide="24">
+    <!-- Slide 25: InstructionsLoaded -->
+    <div class="slide" data-slide="25">
         <div class="hook-title">
             <span class="hook-number">20</span>
             <span class="hook-name">InstructionsLoaded</span>
@@ -2014,8 +2081,8 @@
         </div>
     </div>
 
-    <!-- Slide 25: Elicitation -->
-    <div class="slide" data-slide="25">
+    <!-- Slide 26: Elicitation -->
+    <div class="slide" data-slide="26">
         <div class="hook-title">
             <span class="hook-number">21</span>
             <span class="hook-name">Elicitation</span>
@@ -2068,8 +2135,8 @@
         </div>
     </div>
 
-    <!-- Slide 26: ElicitationResult -->
-    <div class="slide" data-slide="26">
+    <!-- Slide 27: ElicitationResult -->
+    <div class="slide" data-slide="27">
         <div class="hook-title">
             <span class="hook-number">22</span>
             <span class="hook-name">ElicitationResult</span>
@@ -2122,8 +2189,8 @@
         </div>
     </div>
 
-    <!-- Slide 27: StopFailure -->
-    <div class="slide" data-slide="27">
+    <!-- Slide 28: StopFailure -->
+    <div class="slide" data-slide="28">
         <div class="hook-title">
             <span class="hook-number">23</span>
             <span class="hook-name">StopFailure</span>
@@ -2171,8 +2238,8 @@
         </div>
     </div>
 
-    <!-- Slide 28: CwdChanged -->
-    <div class="slide" data-slide="28">
+    <!-- Slide 29: CwdChanged -->
+    <div class="slide" data-slide="29">
         <div class="hook-title">
             <span class="hook-number">24</span>
             <span class="hook-name">CwdChanged</span>
@@ -2220,8 +2287,8 @@
         </div>
     </div>
 
-    <!-- Slide 29: FileChanged -->
-    <div class="slide" data-slide="29">
+    <!-- Slide 30: FileChanged -->
+    <div class="slide" data-slide="30">
         <div class="hook-title">
             <span class="hook-number">25</span>
             <span class="hook-name">FileChanged</span>
@@ -2269,14 +2336,14 @@
         </div>
     </div>
 
-    <!-- Slide 30: Agent Hooks -->
-    <div class="slide" data-slide="30">
+    <!-- Slide 31: Agent Hooks -->
+    <div class="slide" data-slide="31">
         <h1>Agent Hooks (Bonus)</h1>
         <p>Claude Code 2.1.0 introduced support for agent-specific hooks defined in agent frontmatter files. These hooks only run within the agent's lifecycle.</p>
 
         <div class="trigger-box">
             <h4>Supported Agent Hooks</h4>
-            <p>Agent frontmatter hooks support <strong>6 of 25 hooks</strong>: PreToolUse, PostToolUse, PermissionRequest, PostToolUseFailure, Stop, and SubagentStop.</p>
+            <p>Agent frontmatter hooks support <strong>6 of 26 hooks</strong>: PreToolUse, PostToolUse, PermissionRequest, PostToolUseFailure, Stop, and SubagentStop.</p>
         </div>
 
         <div class="how-to-trigger">
@@ -2374,8 +2441,8 @@ hooks:
         </div>
     </div>
 
-    <!-- Slide 31: Configuration -->
-    <div class="slide" data-slide="31">
+    <!-- Slide 32: Configuration -->
+    <div class="slide" data-slide="32">
         <h1>Configuration</h1>
         <p>Hooks are configured in <code>.claude/settings.json</code> and can be individually enabled/disabled.</p>
 
@@ -2416,8 +2483,8 @@ hooks:
         </div>
     </div>
 
-    <!-- Slide 32: Summary -->
-    <div class="slide" data-slide="32">
+    <!-- Slide 33: Summary -->
+    <div class="slide" data-slide="33">
         <h1>Summary</h1>
 
         <div class="info-grid">
@@ -2457,6 +2524,7 @@ hooks:
                 <p><strong>Stop</strong> — Claude ready to stop</p>
                 <p><strong>TeammateIdle</strong> — Teammate agent idle</p>
                 <p><strong>TaskCompleted</strong> — Background task done</p>
+                <p><strong>TaskCreated</strong> — Task being created</p>
             </div>
         </div>
 
@@ -2472,6 +2540,7 @@ hooks:
             <span class="matcher-tag">Stop</span>
             <span class="matcher-tag">TeammateIdle</span>
             <span class="matcher-tag">TaskCompleted</span>
+            <span class="matcher-tag">TaskCreated</span>
             <span class="matcher-tag">ConfigChange</span>
             <span class="matcher-tag">WorktreeCreate</span>
             <span class="matcher-tag">Elicitation</span>
@@ -2537,7 +2606,7 @@ hooks:
         <button class="nav-btn" id="nextBtn" onclick="nextSlide()">→</button>
     </div>
 
-    <div class="slide-counter" id="slideCounter">1 / 32</div>
+    <div class="slide-counter" id="slideCounter">1 / 33</div>
 
     <div class="keyboard-hint">
         <kbd>←</kbd> <kbd>→</kbd> or <kbd>Space</kbd> to navigate
@@ -2545,7 +2614,7 @@ hooks:
 
     <script>
         let currentSlide = 1;
-        const totalSlides = 32;
+        const totalSlides = 33;
 
         function showSlide(n) {
             const slides = document.querySelectorAll('.slide');

@@ -24,5 +24,6 @@
   "disableStopFailureHook": false,
   "disableCwdChangedHook": false,
   "disableFileChangedHook": false,
+  "disableTaskCreatedHook": false,
   "disableLogging": true
 }

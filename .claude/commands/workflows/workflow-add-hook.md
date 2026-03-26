@@ -154,8 +154,7 @@ Update both the **flowchart SVG** and the **prompt cards**:
 - Update the `viewBox` height if the chart grows taller
 
 **Prompt cards (left panel) — MANDATORY, never skip:**
-Every hook MUST appear in at least one prompt card with a **real trigger prompt** that shows how to fire the hook. Either:
-- Add `<span class="hook-tag"><HookEventName></span>` to an existing card's `.prompt-hooks` div if the hook fits that scenario, OR
+Every new hook MUST get its **own dedicated prompt card** showing how to trigger it. Do NOT bundle it into an existing card — always create a separate card so the user can see exactly how to test the hook.
 - Create a new `<div class="prompt-card" data-card-hooks="<HookEventName>">` with:
   - A numbered step in `.prompt-step` (increment from the last card number)
   - Hook tags in `.prompt-hooks`

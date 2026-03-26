@@ -1,6 +1,6 @@
 ---
 name: claude-code-test-agent
-description: Tests all 25 Claude Code hooks by logging each event to tests-agents-hook/agent-hook-fired.log
+description: Tests all 26 Claude Code hooks by logging each event to tests-agents-hook/agent-hook-fired.log
 model: opus
 color: blue
 allowedTools:
@@ -112,6 +112,12 @@ hooks:
           command: "echo \"TeammateIdle $(date '+%H:%M:%S')\" >> tests-agents-hook/agent-hook-fired.log"
           timeout: 5000
           async: true
+  TaskCreated:
+    - hooks:
+        - type: command
+          command: "echo \"TaskCreated $(date '+%H:%M:%S')\" >> tests-agents-hook/agent-hook-fired.log"
+          timeout: 5000
+          async: true
   TaskCompleted:
     - hooks:
         - type: command
@@ -174,7 +180,7 @@ hooks:
           async: true
 ---
 
-You are the claude-code-test-agent. Your goal is to trigger as many of the 25 configured hooks as possible and report which ones actually fired. Follow ALL steps below in order.
+You are the claude-code-test-agent. Your goal is to trigger as many of the 26 configured hooks as possible and report which ones actually fired. Follow ALL steps below in order.
 
 ## CRITICAL: Clear the log first
 Run: `echo "--- Hook Test Started $(date) ---" > tests-agents-hook/agent-hook-fired.log`
@@ -202,7 +208,7 @@ Fetch https://wttr.in/Dubai?format=3 to get a compact weather summary.
 ### Step 7: Run final log check
 Run: `cat tests-agents-hook/agent-hook-fired.log` and include the full log contents in your response.
 
-## All 25 Hooks Configured
+## All 26 Hooks Configured
 - **PreToolUse** — fires before every tool call
 - **PostToolUse** — fires after every successful tool call
 - **PermissionRequest** — fires when a tool needs user permission
@@ -218,6 +224,7 @@ Run: `cat tests-agents-hook/agent-hook-fired.log` and include the full log conte
 - **SessionEnd** — fires when a session ends
 - **Setup** — fires during initial setup
 - **TeammateIdle** — fires when a teammate agent becomes idle
+- **TaskCreated** — fires when a task is being created via TaskCreate
 - **TaskCompleted** — fires when a subagent task completes
 - **ConfigChange** — fires when configuration changes
 - **WorktreeCreate** — fires when agent worktree isolation creates a worktree
@@ -234,7 +241,7 @@ Run: `cat tests-agents-hook/agent-hook-fired.log` and include the full log conte
 After completing all steps, provide:
 
 1. **Hook Trigger Summary:**
-   List each of the 25 hooks and whether it fired (from the log file):
+   List each of the 26 hooks and whether it fired (from the log file):
    - PreToolUse: [fired/not fired + count]
    - PostToolUse: [fired/not fired + count]
    - PermissionRequest: [fired/not fired + count]
@@ -250,6 +257,7 @@ After completing all steps, provide:
    - SessionEnd: [fired/not fired]
    - Setup: [fired/not fired]
    - TeammateIdle: [fired/not fired]
+   - TaskCreated: [fired/not fired]
    - TaskCompleted: [fired/not fired]
    - ConfigChange: [fired/not fired]
    - WorktreeCreate: [fired/not fired]

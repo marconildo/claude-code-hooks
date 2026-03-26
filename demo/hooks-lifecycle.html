@@ -126,43 +126,47 @@
         <div class="prompt-code"><div class="prompt-line"><span class="prompt-line-text"><span class="prefix">&gt;</span> /compact</span><button class="copy-btn" onclick="copyLine(this)" title="Copy"></button></div></div>
       </div>
       <div class="prompt-card" data-card-hooks="TeammateIdle">
-        <div class="prompt-header"><span class="prompt-step">6. Agent teams</span><div class="prompt-hooks"><span class="hook-tag">TeammateIdle</span></div></div>
-        <div class="prompt-code"><div class="prompt-line"><span class="prompt-line-text"><span class="prefix">$</span> CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1 claude</span><button class="copy-btn" onclick="copyLine(this)" title="Copy"></button></div><div class="prompt-line"><span class="prompt-line-text"><span class="prefix">&gt;</span> Create an agent team to QA this demo project</span><button class="copy-btn" onclick="copyLine(this)" title="Copy"></button></div></div>
+        <div class="prompt-header"><span class="prompt-step">6. Teammate idle</span><div class="prompt-hooks"><span class="hook-tag">TeammateIdle</span></div></div>
+        <div class="prompt-code"><div class="prompt-line"><span class="prompt-line-text"><span class="prefix">$</span> CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1 claude</span><button class="copy-btn" onclick="copyLine(this)" title="Copy"></button></div><div class="prompt-line"><span class="prompt-line-text"><span class="prefix">&gt;</span> Assign a task to the implementer, then wait</span><button class="copy-btn" onclick="copyLine(this)" title="Copy"></button></div></div>
+      </div>
+      <div class="prompt-card" data-card-hooks="TaskCreated">
+        <div class="prompt-header"><span class="prompt-step">7. Task created</span><div class="prompt-hooks"><span class="hook-tag">TaskCreated</span></div></div>
+        <div class="prompt-code"><div class="prompt-line"><span class="prompt-line-text"><span class="prefix">$</span> CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1 claude</span><button class="copy-btn" onclick="copyLine(this)" title="Copy"></button></div><div class="prompt-line"><span class="prompt-line-text"><span class="prefix">&gt;</span> Create a task for the implementer to add login</span><button class="copy-btn" onclick="copyLine(this)" title="Copy"></button></div></div>
       </div>
       <div class="prompt-card" data-card-hooks="StopFailure">
-        <div class="prompt-header"><span class="prompt-step">7. API error</span><div class="prompt-hooks"><span class="hook-tag">StopFailure</span></div></div>
+        <div class="prompt-header"><span class="prompt-step">8. API error</span><div class="prompt-hooks"><span class="hook-tag">StopFailure</span></div></div>
         <div class="prompt-code"><div class="prompt-line"><span class="prompt-line-text"><span class="prefix">$</span> ANTHROPIC_API_KEY=sk-invalid claude</span><button class="copy-btn" onclick="copyLine(this)" title="Copy"></button></div><div class="prompt-line"><span class="prompt-line-text"><span class="prefix">&gt;</span> Hi</span><button class="copy-btn" onclick="copyLine(this)" title="Copy"></button></div></div>
       </div>
       <div class="prompt-card" data-card-hooks="Elicitation,ElicitationResult">
-        <div class="prompt-header"><span class="prompt-step">8. Elicitation</span><div class="prompt-hooks"><span class="hook-tag">Elicitation</span><span class="hook-tag">ElicitationResult</span></div></div>
+        <div class="prompt-header"><span class="prompt-step">9. Elicitation</span><div class="prompt-hooks"><span class="hook-tag">Elicitation</span><span class="hook-tag">ElicitationResult</span></div></div>
         <div class="prompt-code"><div class="prompt-line"><span class="prompt-line-text"><span class="prefix">&gt;</span> Use elicit_boolean to ask if I like pizza</span><button class="copy-btn" onclick="copyLine(this)" title="Copy"></button></div></div>
       </div>
       <div class="prompt-card" data-card-hooks="WorktreeCreate,WorktreeRemove">
-        <div class="prompt-header"><span class="prompt-step">9. Worktree</span><div class="prompt-hooks"><span class="hook-tag">WorktreeCreate</span><span class="hook-tag">WorktreeRemove</span></div></div>
+        <div class="prompt-header"><span class="prompt-step">10. Worktree</span><div class="prompt-hooks"><span class="hook-tag">WorktreeCreate</span><span class="hook-tag">WorktreeRemove</span></div></div>
         <div class="prompt-code"><div class="prompt-line"><span class="prompt-line-text"><span class="prefix">&gt;</span> Enter a worktree and save the current time to time.txt</span><button class="copy-btn" onclick="copyLine(this)" title="Copy"></button></div><div class="prompt-line"><span class="prompt-line-text"><span class="prefix">&gt;</span> Exit the worktree</span><button class="copy-btn" onclick="copyLine(this)" title="Copy"></button></div></div>
       </div>
       <div class="prompt-card" data-card-hooks="ConfigChange">
-        <div class="prompt-header"><span class="prompt-step">10. Config change</span><div class="prompt-hooks"><span class="hook-tag">ConfigChange</span></div></div>
+        <div class="prompt-header"><span class="prompt-step">11. Config change</span><div class="prompt-hooks"><span class="hook-tag">ConfigChange</span></div></div>
         <div class="prompt-code"><div class="prompt-line"><span class="prompt-line-text"><span class="prefix">$</span> Edit .claude/settings.json while running</span><button class="copy-btn" onclick="copyLine(this)" title="Copy"></button></div></div>
       </div>
       <div class="prompt-card" data-card-hooks="Notification">
-        <div class="prompt-header"><span class="prompt-step">11. Notification</span><div class="prompt-hooks"><span class="hook-tag">Notification</span></div></div>
+        <div class="prompt-header"><span class="prompt-step">12. Notification</span><div class="prompt-hooks"><span class="hook-tag">Notification</span></div></div>
         <div class="prompt-code"><div class="prompt-line"><span class="prompt-line-text">Leave Claude idle</span><button class="copy-btn" onclick="copyLine(this)" title="Copy"></button></div></div>
       </div>
       <div class="prompt-card" data-card-hooks="SessionEnd">
-        <div class="prompt-header"><span class="prompt-step">12. End session</span><div class="prompt-hooks"><span class="hook-tag">SessionEnd</span></div></div>
+        <div class="prompt-header"><span class="prompt-step">13. End session</span><div class="prompt-hooks"><span class="hook-tag">SessionEnd</span></div></div>
         <div class="prompt-code"><div class="prompt-line"><span class="prompt-line-text"><span class="prefix">&gt;</span> exit</span><button class="copy-btn" onclick="copyLine(this)" title="Copy"></button></div></div>
       </div>
       <div class="prompt-card" data-card-hooks="Setup">
-        <div class="prompt-header"><span class="prompt-step">13. Setup</span><div class="prompt-hooks"><span class="hook-tag">Setup</span></div></div>
+        <div class="prompt-header"><span class="prompt-step">14. Setup</span><div class="prompt-hooks"><span class="hook-tag">Setup</span></div></div>
         <div class="prompt-code"><div class="prompt-line"><span class="prompt-line-text"><span class="prefix">$</span> claude --init-only</span><button class="copy-btn" onclick="copyLine(this)" title="Copy"></button></div></div>
       </div>
       <div class="prompt-card" data-card-hooks="CwdChanged">
-        <div class="prompt-header"><span class="prompt-step">14. Directory change</span><div class="prompt-hooks"><span class="hook-tag">CwdChanged</span></div></div>
+        <div class="prompt-header"><span class="prompt-step">15. Directory change</span><div class="prompt-hooks"><span class="hook-tag">CwdChanged</span></div></div>
         <div class="prompt-code"><div class="prompt-line"><span class="prompt-line-text"><span class="prefix">&gt;</span> cd into my src directory</span><button class="copy-btn" onclick="copyLine(this)" title="Copy"></button></div></div>
       </div>
       <div class="prompt-card" data-card-hooks="FileChanged">
-        <div class="prompt-header"><span class="prompt-step">15. File change</span><div class="prompt-hooks"><span class="hook-tag">FileChanged</span></div></div>
+        <div class="prompt-header"><span class="prompt-step">16. File change</span><div class="prompt-hooks"><span class="hook-tag">FileChanged</span></div></div>
         <div class="prompt-code"><div class="prompt-line"><span class="prompt-line-text"><span class="prefix">$</span> echo "X=1" >> .env</span><button class="copy-btn" onclick="copyLine(this)" title="Copy"></button></div><div class="prompt-line"><span class="prompt-line-text">Requires matcher: ".envrc|.env" in settings</span></div></div>
       </div>
     </div>
@@ -205,7 +209,7 @@
         <g class="n3"><ellipse cx="115" cy="42" rx="3" ry="2.5" fill="#E07C4C" transform="rotate(-20,115,42)"/><ellipse cx="125" cy="40" rx="3" ry="2.5" fill="#E07C4C" transform="rotate(-20,125,40)"/><rect x="117" y="26" width="2" height="16" fill="#E07C4C"/><rect x="127" y="24" width="2" height="16" fill="#E07C4C"/><rect x="117" y="26" width="12" height="2" fill="#E07C4C"/></g>
         <g class="cb"><rect class="le" x="22" y="10" width="8" height="14" fill="#E07C4C"/><rect class="re" x="70" y="10" width="8" height="14" fill="#E07C4C"/><rect x="18" y="24" width="64" height="4" fill="#E07C4C"/><rect x="14" y="28" width="72" height="32" fill="#E07C4C"/><rect x="30" y="34" width="8" height="10" fill="#000"/><rect x="62" y="34" width="8" height="10" fill="#000"/><rect class="mo" x="44" y="50" width="12" height="6" fill="#000"/><rect x="2" y="40" width="12" height="8" fill="#E07C4C"/><rect x="86" y="40" width="12" height="8" fill="#E07C4C"/><rect x="24" y="60" width="12" height="14" fill="#E07C4C"/><rect x="64" y="60" width="12" height="14" fill="#E07C4C"/></g>
       </svg>
-      <div class="right-branding-text"><strong>Claude Code Hooks</strong>25 supported</div>
+      <div class="right-branding-text"><strong>Claude Code Hooks</strong>26 supported</div>
     </div>
 
     <!-- Chart -->
@@ -243,6 +247,8 @@
         <line class="arrow-line" x1="245" y1="241" x2="245" y2="249" marker-end="url(#ah)"/>
         <g class="hook-group" data-hooks="SubagentStart,SubagentStop"><rect class="hook-rect" x="125" y="249" width="240" height="28" rx="5"/><text class="hook-text" x="245" y="267" text-anchor="middle">SubagentStart / SubagentStop</text><text class="fire-count" x="362" y="253" text-anchor="end"></text></g>
         <line class="arrow-line" x1="245" y1="277" x2="245" y2="285" marker-end="url(#ah)"/>
+        <g class="hook-group" data-hook="TaskCreated"><rect class="hook-rect hook-rect-side" x="395" y="270" width="100" height="28" rx="5"/><text class="hook-text hook-text-side" x="445" y="282" text-anchor="middle">TaskCreated</text><text class="hook-subtitle" x="445" y="292" text-anchor="middle">(Teams)</text><text class="fire-count" x="492" y="274" text-anchor="end"></text></g>
+        <line class="connector-dashed" x1="330" y1="299" x2="395" y2="284"/>
         <g class="hook-group" data-hook="TaskCompleted"><rect class="hook-rect" x="160" y="285" width="170" height="28" rx="5"/><text class="hook-text" x="245" y="303" text-anchor="middle">TaskCompleted</text><text class="fire-count" x="327" y="289" text-anchor="end"></text></g>
         <path class="arrow-line" d="M 330,299 L 365,299 L 365,119 L 340,119"/><polygon points="340,115 330,119 340,123" class="arrow-head"/>
         <line class="arrow-line" x1="245" y1="313" x2="245" y2="335" marker-end="url(#ah)"/>
