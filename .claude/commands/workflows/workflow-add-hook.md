@@ -171,8 +171,8 @@ Every new hook MUST get its **own dedicated prompt card** showing how to trigger
 2. **Slide 2:** Update hook counts ("N Hooks Explained", "all N hooks", and "currently supports N hooks (as of vX.X.XX)" in the use-case span)
 3. **Slide 3 (TOC):** Update title count, add new TOC item with correct `goToSlide(X)`
 4. **Slide 4 (Lifecycle):** Add hook in appropriate lifecycle position
-5. **New slide:** Create using the same HTML structure as existing hook slides — include hook number, **can-block/cannot-block badge** (`<span class="can-block">Can Block</span>` or `<span class="cannot-block">Cannot Block</span>` in the `hook-title` div), trigger description, how-to-trigger, matcher values (if applicable), use cases, and sound demo. **Every hook slide MUST have a can-block badge — never omit it.**
-6. **Shift slides:** Increment `data-slide` numbers and TOC `goToSlide(X)` references for all subsequent slides
+5. **New slide:** Create using the same HTML structure as existing hook slides — include hook number, **can-block/cannot-block badge** (`<span class="can-block">Can Block</span>` or `<span class="cannot-block">Cannot Block</span>` in the `hook-title` div), trigger description, how-to-trigger, matcher values (if applicable), use cases, and sound demo. **Every hook slide MUST have a can-block badge — never omit it.** The `<span class="hook-number">` value must be the **next sequential number** — count existing hook slides (grep for `hook-number`) and use max + 1. Do NOT copy the number from the previous slide.
+6. **Shift slides and hook numbers:** Increment `data-slide` numbers, TOC `goToSlide(X)` references, **AND `<span class="hook-number">N</span>` values** for all subsequent hook slides. This is critical — every hook after the insertion point needs its `hook-number` incremented by 1, not just its `data-slide`.
 7. **Summary slide:** Add hook to appropriate category card. **If the hook can block**, also add it to the "Hooks That Can Block Execution" `matcher-values` div at the bottom of the summary slide.
 8. **JavaScript:** Update `const totalSlides = N`
 
@@ -197,6 +197,7 @@ Run these verifications:
 6. `grep -c "<HookEventName>" demo/.claude/hooks/scripts/demo-hooks.py` — must return ≥1
 7. `grep -c "<HookEventName>" demo/hooks-lifecycle.html` — must return ≥1
 8. `grep -c "data-card-hooks=.*<HookEventName>" demo/hooks-lifecycle.html` — must return ≥1 (prompt card check)
+9. `grep 'hook-number' presentation/index.html | grep -v '\.hook-number'` — verify numbers are sequential 1 through N with NO duplicates and NO gaps. This catches the numbering bug where a new hook copies the previous hook's number instead of incrementing.
 
 Count hooks across all files and print a summary. **All counts must match the expected new total — if ANY count is wrong, fix it before finishing.**
 

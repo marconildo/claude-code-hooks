@@ -349,3 +349,15 @@
 | 7 | MEDIUM | Config Drift | Fix HOOKS-README stale anchor `#official-23-hooks` → `#official-26-hooks` | ✅ COMPLETE (updated anchor to match new heading) |
 | 8 | MEDIUM | Can-Block Status | Investigate PostToolUseFailure — both agents report official docs say Cannot Block, but repo has Can Block since v2.1.69 | ✋ ON HOLD (needs investigation — keeping current Can Block status until confirmed) |
 | 9 | LOW | Agent Hook Docs | Re-test agent frontmatter hooks when upstream #27153 resolves | ✋ ON HOLD (recurring since 2026-02-20; upstream issue [#27153](https://github.com/anthropics/claude-code/issues/27153) still open) |
+
+---
+
+## [2026-03-27 01:21 PM PKT] Claude Code v2.1.85
+
+| # | Priority | Type | Action | Status |
+|---|----------|------|--------|--------|
+| 1 | HIGH | Presentation | Fix hook numbering bug — TaskCreated has duplicate number 16 (same as TaskCompleted); all 9 subsequent hooks (ConfigChange through FileChanged) are off by one (17→18 through 25→26) | ✅ COMPLETE (fixed 10 hook-number spans: TaskCreated→17, ConfigChange→18, WorktreeCreate→19, WorktreeRemove→20, InstructionsLoaded→21, Elicitation→22, ElicitationResult→23, StopFailure→24, CwdChanged→25, FileChanged→26) |
+| 2 | MEDIUM | New Hook Option | Document new `if` conditional field for hooks — permission rule syntax (e.g., `Bash(git *)`) reduces unnecessary hook process spawning (v2.1.85) | ✋ ON HOLD (not yet in official docs pages — only in GitHub changelog; will document when docs update) |
+| 3 | MEDIUM | Hook Enhancement | Document PreToolUse `updatedInput` for AskUserQuestion — enables headless integrations to auto-respond to user questions (v2.1.85) | ✋ ON HOLD (not yet in official docs pages — only in GitHub changelog; will document when docs update) |
+| 4 | MEDIUM | Can-Block Status | PostToolUseFailure — official docs say Cannot Block (output is only `additionalContext`), but repo had Can Block since v2.1.69 in presentation badge, summary list, and HOOKS-README Decision Control table | ✅ COMPLETE (changed presentation badge to "Cannot Block", removed from summary can-block list, removed from HOOKS-README Decision Control blocking group) |
+| 5 | LOW | Agent Hook Docs | Re-test agent frontmatter hooks when upstream #27153 resolves | ✋ ON HOLD (recurring since 2026-02-20; upstream issue [#27153](https://github.com/anthropics/claude-code/issues/27153) still open) |

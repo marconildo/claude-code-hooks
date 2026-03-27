@@ -1,6 +1,6 @@
 # Claude Code Hooks
 
-Sound notification system for all 25 Claude Code hooks. Plays sound effects when hook events fire.
+Sound notification system for all 26 Claude Code hooks. Plays sound effects when hook events fire.
 
 ## Project Structure
 
@@ -71,4 +71,4 @@ Persistent memory file: `~/.claude/projects/-Users-shayanraees-Documents-Github-
 
 ## Schema Note
 
-`.claude/settings.json` is validated against Claude Code's bundled JSON schema. The schema's `propertyNames` enum may contain hidden/undocumented hooks not yet in the changelog. The workflow-changelog agent checks for these. As of v2.1.84, the schema has 26 hooks (25 implemented in repo + TaskCreated pending addition).
+`.claude/settings.json` is validated against Claude Code's bundled JSON schema. The schema's `propertyNames` enum may contain hidden/undocumented hooks not yet in the changelog. The workflow-changelog agent checks for these. As of v2.1.85, the schema has 26 hooks (all implemented in repo).
