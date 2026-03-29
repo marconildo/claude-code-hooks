@@ -163,7 +163,7 @@ Every new hook MUST get its **own dedicated prompt card** showing how to trigger
 - Renumber subsequent prompt cards if inserting in the middle
 
 **Branding text:**
-- Update the "22 supported" text in `.right-branding-text` to the new count
+- Update the "26 supported" text in `.right-branding-text` to the new count
 
 ### `presentation/index.html`
 

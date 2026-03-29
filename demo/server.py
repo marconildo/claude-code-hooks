@@ -40,11 +40,15 @@ ALL_HOOKS = [
     "InstructionsLoaded",
     "Elicitation",
     "ElicitationResult",
+    "TaskCreated",
+    "StopFailure",
+    "CwdChanged",
+    "FileChanged",
 ]
 
 
 def create_initial_state():
-    """Return a fresh state dict with all 22 hooks inactive."""
+    """Return a fresh state dict with all 26 hooks inactive."""
     hooks = {}
     for hook_name in ALL_HOOKS:
         hooks[hook_name] = {
@@ -62,9 +66,18 @@ def read_state():
     """Read the current hook state from disk."""
     try:
         with open(STATE_FILE, "r") as f:
-            return json.load(f)
+            state = json.load(f)
     except (FileNotFoundError, json.JSONDecodeError):
         return create_initial_state()
+    # Backfill any hooks added after the state file was created
+    for h in ALL_HOOKS:
+        if h not in state.get("hooks", {}):
+            state.setdefault("hooks", {})[h] = {
+                "active": False,
+                "last_fired": None,
+                "fire_count": 0,
+            }
+    return state
 
 
 def write_state(state):

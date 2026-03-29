@@ -66,7 +66,7 @@ def get_state_dir():
 
 
 def create_initial_state():
-    """Return a fresh state dict with all 22 hooks inactive."""
+    """Return a fresh state dict with all 26 hooks inactive."""
     hooks = {}
     for hook_name in ALL_HOOKS:
         hooks[hook_name] = {
@@ -115,6 +115,15 @@ def update_state(hook_name):
                     state = json.load(f)
             except (FileNotFoundError, json.JSONDecodeError):
                 state = create_initial_state()
+
+            # Backfill any hooks added after the state file was created
+            for h in ALL_HOOKS:
+                if h not in state.get("hooks", {}):
+                    state.setdefault("hooks", {})[h] = {
+                        "active": False,
+                        "last_fired": None,
+                        "fire_count": 0,
+                    }
 
             # Update the hook
             if hook_name in state["hooks"]:

@@ -107,7 +107,7 @@
     <div class="prompts-grid">
       <div class="prompt-card" data-card-hooks="SessionStart,InstructionsLoaded">
         <div class="prompt-header"><span class="prompt-step">1. Start Claude</span><div class="prompt-hooks"><span class="hook-tag">SessionStart</span><span class="hook-tag">InstructionsLoaded</span></div></div>
-        <div class="prompt-code"><div class="prompt-line"><span class="prompt-line-text"><span class="prefix">$</span> cd demo && claude</span><button class="copy-btn" onclick="copyLine(this)" title="Copy"></button></div></div>
+        <div class="prompt-code"><div class="prompt-line"><span class="prompt-line-text"><span class="prefix">$</span> claude</span><button class="copy-btn" onclick="copyLine(this)" title="Copy"></button></div></div>
       </div>
       <div class="prompt-card" data-card-hooks="UserPromptSubmit,PreToolUse,PermissionRequest,PostToolUse,Stop">
         <div class="prompt-header"><span class="prompt-step">2. Use tools</span><div class="prompt-hooks"><span class="hook-tag">UserPromptSubmit</span><span class="hook-tag">PreToolUse</span><span class="hook-tag">PermissionRequest</span><span class="hook-tag">PostToolUse</span><span class="hook-tag">Stop</span></div></div>
@@ -127,11 +127,11 @@
       </div>
       <div class="prompt-card" data-card-hooks="TeammateIdle">
         <div class="prompt-header"><span class="prompt-step">6. Teammate idle</span><div class="prompt-hooks"><span class="hook-tag">TeammateIdle</span></div></div>
-        <div class="prompt-code"><div class="prompt-line"><span class="prompt-line-text"><span class="prefix">$</span> CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1 claude</span><button class="copy-btn" onclick="copyLine(this)" title="Copy"></button></div><div class="prompt-line"><span class="prompt-line-text"><span class="prefix">&gt;</span> Assign a task to the implementer, then wait</span><button class="copy-btn" onclick="copyLine(this)" title="Copy"></button></div></div>
+        <div class="prompt-code"><div class="prompt-line"><span class="prompt-line-text"><span class="prefix">$</span> CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1 claude</span><button class="copy-btn" onclick="copyLine(this)" title="Copy"></button></div><div class="prompt-line"><span class="prompt-line-text"><span class="prefix">&gt;</span> Create an agent team to QA this demo project</span><button class="copy-btn" onclick="copyLine(this)" title="Copy"></button></div></div>
       </div>
       <div class="prompt-card" data-card-hooks="TaskCreated">
         <div class="prompt-header"><span class="prompt-step">7. Task created</span><div class="prompt-hooks"><span class="hook-tag">TaskCreated</span></div></div>
-        <div class="prompt-code"><div class="prompt-line"><span class="prompt-line-text"><span class="prefix">$</span> CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1 claude</span><button class="copy-btn" onclick="copyLine(this)" title="Copy"></button></div><div class="prompt-line"><span class="prompt-line-text"><span class="prefix">&gt;</span> Create a task for the implementer to add login</span><button class="copy-btn" onclick="copyLine(this)" title="Copy"></button></div></div>
+        <div class="prompt-code"><div class="prompt-line"><span class="prompt-line-text"><span class="prefix">&gt;</span> Create a task to add a login page</span><button class="copy-btn" onclick="copyLine(this)" title="Copy"></button></div></div>
       </div>
       <div class="prompt-card" data-card-hooks="StopFailure">
         <div class="prompt-header"><span class="prompt-step">8. API error</span><div class="prompt-hooks"><span class="hook-tag">StopFailure</span></div></div>
@@ -163,11 +163,11 @@
       </div>
       <div class="prompt-card" data-card-hooks="CwdChanged">
         <div class="prompt-header"><span class="prompt-step">15. Directory change</span><div class="prompt-hooks"><span class="hook-tag">CwdChanged</span></div></div>
-        <div class="prompt-code"><div class="prompt-line"><span class="prompt-line-text"><span class="prefix">&gt;</span> cd into my src directory</span><button class="copy-btn" onclick="copyLine(this)" title="Copy"></button></div></div>
+        <div class="prompt-code"><div class="prompt-line"><span class="prompt-line-text"><span class="prefix">&gt;</span> cd to the parent directory</span><button class="copy-btn" onclick="copyLine(this)" title="Copy"></button></div></div>
       </div>
       <div class="prompt-card" data-card-hooks="FileChanged">
         <div class="prompt-header"><span class="prompt-step">16. File change</span><div class="prompt-hooks"><span class="hook-tag">FileChanged</span></div></div>
-        <div class="prompt-code"><div class="prompt-line"><span class="prompt-line-text"><span class="prefix">$</span> echo "X=1" >> .env</span><button class="copy-btn" onclick="copyLine(this)" title="Copy"></button></div><div class="prompt-line"><span class="prompt-line-text">Requires matcher: ".envrc|.env" in settings</span></div></div>
+        <div class="prompt-code"><div class="prompt-line"><span class="prompt-line-text"><span class="prefix">$</span> echo "X=1" >> .env</span><button class="copy-btn" onclick="copyLine(this)" title="Copy"></button></div><div class="prompt-line"><span class="prompt-line-text">Run in separate terminal; matcher configured</span></div></div>
       </div>
     </div>
   </div>

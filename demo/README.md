@@ -1,6 +1,6 @@
 # Hooks Lifecycle Demo
 
-Interactive real-time visualization of all 22 Claude Code hooks. As you use Claude Code in the demo directory, hooks light up on a flowchart diagram with sound effects.
+Interactive real-time visualization of all 26 Claude Code hooks. As you use Claude Code in the demo directory, hooks light up on a flowchart diagram with sound effects.
 
 ## Quick Start
 
@@ -28,7 +28,7 @@ demo/
   server.py                      # HTTP server — serves HTML + state API (port 3456)
   start-demo.sh                  # Convenience script — starts server + opens browser
   .claude/
-    settings.json                # Hook config — all 22 hooks wired to demo-hooks.py
+    settings.json                # Hook config — all 26 hooks wired to demo-hooks.py
     hooks/
       scripts/demo-hooks.py      # Hook handler — updates state file + plays sounds
       state/hook-state.json      # Shared state — tracks which hooks have fired

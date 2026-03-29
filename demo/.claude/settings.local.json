@@ -8,7 +8,6 @@
       "Glob",
       "Grep",
       "WebFetch(*)",
-      "WebSearch(*)",
       "Agent",
       "NotebookEdit"
     ]
