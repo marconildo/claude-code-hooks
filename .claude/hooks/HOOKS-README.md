@@ -1,7 +1,7 @@
 # HOOKS-README
 contains all the details, scripts, and instructions for the hooks
 
-## Hook Events Overview - [Official 26 Hooks](https://code.claude.com/docs/en/hooks)
+## Hook Events Overview - [Official 27 Hooks](https://code.claude.com/docs/en/hooks)
 Claude Code provides several hook events that run at different points in the workflow:
 
 | # | Hook | Description | Options |
@@ -32,6 +32,7 @@ Claude Code provides several hook events that run at different points in the wor
 | 24 | `StopFailure` | Runs when the turn ends due to an API error (rate limit, auth failure, etc.) | `async`, `timeout: 5000`, `error`, `error_details`, `last_assistant_message` |
 | 25 | `CwdChanged` | Runs when the working directory changes during a session (reactive env management, e.g. direnv) | `async`, `timeout: 5000`, `old_cwd`, `new_cwd` |
 | 26 | `FileChanged` | Runs when watched files change during a session (reactive env management, e.g. direnv). **Requires `matcher` with pipe-separated basenames** (e.g. `.envrc\|.env`) to specify which files to watch | `async`, `timeout: 5000`, `file_path`, `change_type` |
+| 27 | `PermissionDenied` | Runs after auto mode classifier denies a tool call. Return `{retry: true}` to tell the model it can retry | `async`, `timeout: 5000` |
 
 > **Note:** Hooks 15-17 (`TeammateIdle`, `TaskCreated`, and `TaskCompleted`) require the experimental agent teams feature. Set `CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1` when launching Claude Code to enable them.
 
@@ -41,7 +42,8 @@ The following items exist in the [Claude Code Changelog](https://github.com/anth
 
 | Item | Added In | Changelog Reference | Notes |
 |------|----------|-------------------|-------|
-| `Setup` hook | [v2.1.10](https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md#2110) | "Added new Setup hook event that can be triggered via `--init`, `--init-only`, or `--maintenance` CLI flags for repository setup and maintenance operations" | Not listed in official hooks reference page (25 hooks listed, Setup excluded) |
+| `Setup` hook | [v2.1.10](https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md#2110) | "Added new Setup hook event that can be triggered via `--init`, `--init-only`, or `--maintenance` CLI flags for repository setup and maintenance operations" | Not listed in official hooks reference page (25 hooks listed, Setup and PermissionDenied excluded) |
+| `PermissionDenied` hook | [v2.1.88](https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md#2188) | "Added `PermissionDenied` hook that fires after auto mode classifier denials — return `{retry: true}` to tell the model it can retry" | Not listed in official hooks reference page — changelog and schema only |
 | Agent frontmatter hooks | [v2.1.0](https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md#210) | "Added hooks support to agent frontmatter, allowing agents to define PreToolUse, PostToolUse, and Stop hooks scoped to the agent's lifecycle" | Changelog only mentions 3 hooks, but testing confirms **6 hooks** actually fire in agent sessions: PreToolUse, PostToolUse, PermissionRequest, PostToolUseFailure, Stop, SubagentStop. Not all 26 hooks are supported. |
 
 ## Prerequisites
@@ -139,7 +141,8 @@ Edit `.claude/hooks/config/hooks-config.json` for team-wide defaults:
   "disableWorktreeRemoveHook": false,
   "disableInstructionsLoadedHook": false,
   "disableCwdChangedHook": false,
-  "disableFileChangedHook": false
+  "disableFileChangedHook": false,
+  "disablePermissionDeniedHook": false
 }
 ```
 
@@ -378,7 +381,7 @@ Sends a prompt to a Claude model for single-turn evaluation. The model returns a
 }
 ```
 
-**Supported events:** PreToolUse, PostToolUse, PostToolUseFailure, PermissionRequest, UserPromptSubmit, Stop, SubagentStop, TaskCreated, TaskCompleted. **Command-only events (not supported for prompt/agent types):** ConfigChange, CwdChanged, Elicitation, ElicitationResult, FileChanged, InstructionsLoaded, Notification, PostCompact, PreCompact, SessionEnd, SessionStart, Setup, StopFailure, SubagentStart, TeammateIdle, WorktreeCreate, WorktreeRemove.
+**Supported events:** PreToolUse, PostToolUse, PostToolUseFailure, PermissionRequest, UserPromptSubmit, Stop, SubagentStop, TaskCreated, TaskCompleted. **Command-only events (not supported for prompt/agent types):** ConfigChange, CwdChanged, Elicitation, ElicitationResult, FileChanged, InstructionsLoaded, Notification, PermissionDenied, PostCompact, PreCompact, SessionEnd, SessionStart, Setup, StopFailure, SubagentStart, TeammateIdle, WorktreeCreate, WorktreeRemove.
 
 ### `type: "agent"`
 
@@ -408,7 +411,7 @@ POSTs JSON to a URL and receives a JSON response, instead of running a shell com
 }
 ```
 
-**Not supported for:** ConfigChange, CwdChanged, Elicitation, ElicitationResult, FileChanged, InstructionsLoaded, Notification, PostCompact, PreCompact, SessionEnd, SessionStart, Setup, StopFailure, SubagentStart, TeammateIdle, WorktreeCreate, WorktreeRemove (command-only events). Headers support environment variable interpolation with `$VAR_NAME`, but only for variables explicitly listed in `allowedEnvVars`.
+**Not supported for:** ConfigChange, CwdChanged, Elicitation, ElicitationResult, FileChanged, InstructionsLoaded, Notification, PermissionDenied, PostCompact, PreCompact, SessionEnd, SessionStart, Setup, StopFailure, SubagentStart, TeammateIdle, WorktreeCreate, WorktreeRemove (command-only events). Headers support environment variable interpolation with `$VAR_NAME`, but only for variables explicitly listed in `allowedEnvVars`.
 
 ## Environment Variables
 
@@ -439,7 +442,7 @@ Every hook receives a JSON object on stdin containing these common fields, in ad
 | `agent_id` | string | Unique subagent identifier. Present when the hook fires inside a subagent context (since v2.1.69) |
 | `agent_type` | string | Agent type name (e.g. `Bash`, `Explore`, `Plan`, or custom). Present when using `--agent <name>` flag or inside a subagent (since v2.1.69) |
 
-> **Note:** Hook-specific fields (e.g., `tool_name` for PreToolUse, `last_assistant_message` for Stop) are listed in the Options column of the [Hook Events Overview](#hook-events-overview---official-26-hooks) table above.
+> **Note:** Hook-specific fields (e.g., `tool_name` for PreToolUse, `last_assistant_message` for Stop) are listed in the Options column of the [Hook Events Overview](#hook-events-overview---official-27-hooks) table above.
 
 ## Hooks Management Commands
 
@@ -497,6 +500,7 @@ Matchers filter which events trigger a hook. Not all hooks support matchers — 
 | `CwdChanged` | — | No matcher support | Always fires |
 | `FileChanged` | `filename` (basename) | Pipe-separated basenames: `.envrc`, `.env`, `.env.local` | `"matcher": ".envrc\|.env"` |
 | `Setup` | — | No matcher support | Always fires |
+| `PermissionDenied` | — | No matcher support | Always fires |
 
 ## Known Issues & Workarounds
 

@@ -386,3 +386,14 @@
 | 4 | MEDIUM | Hook Options Table | Update PreCompact/PostCompact: `trigger` → `compact_trigger`, remove undocumented `custom_instructions`/`compact_summary` — per official docs | ✅ COMPLETE (updated HOOKS-README Options column and matcher table) |
 | 5 | MEDIUM | Can-Block Status | PostToolUse can-block — official docs confirm "No" (exit code 2 = feedback only, tool already ran). Updated presentation badge and summary list, removed from HOOKS-README Decision Control blocking group | ✅ COMPLETE (changed presentation badge to Cannot Block, removed from summary can-block list, updated Decision Control table) |
 | 6 | LOW | Agent Hook Docs | Re-test agent frontmatter hooks when upstream #27153 resolves | ✋ ON HOLD (recurring since 2026-02-20; upstream issue [#27153](https://github.com/anthropics/claude-code/issues/27153) still open) |
+
+---
+
+## [2026-03-31 07:03 PM PKT] Claude Code v2.1.88
+
+| # | Priority | Type | Action | Status |
+|---|----------|------|--------|--------|
+| 1 | HIGH | New Hook | `/workflows:workflow-add-hook PermissionDenied` — v2.1.88, fires after auto mode classifier denials; return `{retry: true}` to retry | ✅ COMPLETE (added to all 14 files — 27 hooks consistent across repo) |
+| 2 | HIGH | Not-in-Docs Table | Add PermissionDenied to HOOKS-README Not-in-Docs table; update Setup note to include PermissionDenied exclusion | ✅ COMPLETE (added row + updated Setup note to "25 hooks listed, Setup and PermissionDenied excluded") |
+| 3 | MEDIUM | Hook Options Table | Investigate CwdChanged field name: `old_cwd` vs `previous_cwd` — WebFetch extraction suggested `previous_cwd` but page was truncated | ❌ INVALID (false positive — official docs confirm `old_cwd` and `new_cwd`, HOOKS-README is correct) |
+| 4 | LOW | Agent Hook Docs | Re-test agent frontmatter hooks when upstream #27153 resolves | ✋ ON HOLD (recurring since 2026-02-20; upstream issue [#27153](https://github.com/anthropics/claude-code/issues/27153) still open) |
