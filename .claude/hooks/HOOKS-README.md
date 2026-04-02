@@ -32,7 +32,7 @@ Claude Code provides several hook events that run at different points in the wor
 | 24 | `StopFailure` | Runs when the turn ends due to an API error (rate limit, auth failure, etc.) | `async`, `timeout: 5000`, `error`, `error_details`, `last_assistant_message` |
 | 25 | `CwdChanged` | Runs when the working directory changes during a session (reactive env management, e.g. direnv) | `async`, `timeout: 5000`, `old_cwd`, `new_cwd` |
 | 26 | `FileChanged` | Runs when watched files change during a session (reactive env management, e.g. direnv). **Requires `matcher` with pipe-separated basenames** (e.g. `.envrc\|.env`) to specify which files to watch | `async`, `timeout: 5000`, `file_path`, `change_type` |
-| 27 | `PermissionDenied` | Runs after auto mode classifier denies a tool call. Return `{retry: true}` to tell the model it can retry | `async`, `timeout: 5000` |
+| 27 | `PermissionDenied` | Runs after auto mode classifier denies a tool call. Return `{retry: true}` to tell the model it can retry | `async`, `timeout: 5000`, `tool_name`, `tool_input`, `tool_use_id`, `reason` |
 
 > **Note:** Hooks 15-17 (`TeammateIdle`, `TaskCreated`, and `TaskCompleted`) require the experimental agent teams feature. Set `CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1` when launching Claude Code to enable them.
 
@@ -42,9 +42,8 @@ The following items exist in the [Claude Code Changelog](https://github.com/anth
 
 | Item | Added In | Changelog Reference | Notes |
 |------|----------|-------------------|-------|
-| `Setup` hook | [v2.1.10](https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md#2110) | "Added new Setup hook event that can be triggered via `--init`, `--init-only`, or `--maintenance` CLI flags for repository setup and maintenance operations" | Not listed in official hooks reference page (25 hooks listed, Setup and PermissionDenied excluded) |
-| `PermissionDenied` hook | [v2.1.88](https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md#2188) | "Added `PermissionDenied` hook that fires after auto mode classifier denials — return `{retry: true}` to tell the model it can retry" | Not listed in official hooks reference page — changelog and schema only |
-| Agent frontmatter hooks | [v2.1.0](https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md#210) | "Added hooks support to agent frontmatter, allowing agents to define PreToolUse, PostToolUse, and Stop hooks scoped to the agent's lifecycle" | Changelog only mentions 3 hooks, but testing confirms **6 hooks** actually fire in agent sessions: PreToolUse, PostToolUse, PermissionRequest, PostToolUseFailure, Stop, SubagentStop. Not all 26 hooks are supported. |
+| `Setup` hook | [v2.1.10](https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md#2110) | "Added new Setup hook event that can be triggered via `--init`, `--init-only`, or `--maintenance` CLI flags for repository setup and maintenance operations" | Not listed in official hooks reference page (26 hooks listed, Setup excluded) |
+| Agent frontmatter hooks | [v2.1.0](https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md#210) | "Added hooks support to agent frontmatter, allowing agents to define PreToolUse, PostToolUse, and Stop hooks scoped to the agent's lifecycle" | Changelog only mentions 3 hooks, but testing confirms **6 hooks** actually fire in agent sessions: PreToolUse, PostToolUse, PermissionRequest, PostToolUseFailure, Stop, SubagentStop. Not all 27 hooks are supported. |
 
 ## Prerequisites
 
@@ -183,7 +182,7 @@ Agent frontmatter hooks support **6 hooks** (not all 27). The changelog original
 - `Stop`: Runs when the agent finishes
 - `SubagentStop`: Runs when a subagent completes
 
-> **Note:** The [v2.1.0 changelog](https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md#210) only mentions 3 hooks: *"Added hooks support to agent frontmatter, allowing agents to define PreToolUse, PostToolUse, and Stop hooks scoped to the agent's lifecycle"*. However, testing with the `claude-code-hook-agent` confirms that 6 hooks actually fire in agent sessions. The remaining 10 hooks (e.g., Notification, SessionStart, SessionEnd, etc.) do not fire in agent contexts.
+> **Note:** The [v2.1.0 changelog](https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md#210) only mentions 3 hooks: *"Added hooks support to agent frontmatter, allowing agents to define PreToolUse, PostToolUse, and Stop hooks scoped to the agent's lifecycle"*. However, testing with the `claude-code-hook-agent` confirms that 6 hooks actually fire in agent sessions. The remaining 21 hooks (e.g., Notification, SessionStart, SessionEnd, etc.) do not fire in agent contexts.
 >
 > **Update (Feb 2026):** The [official hooks reference](https://code.claude.com/docs/en/hooks) now states *"All hook events are supported"* for skill/agent frontmatter hooks. This may mean support has expanded beyond the 6 hooks originally tested. Re-testing recommended to verify if additional hooks now fire in agent sessions.
 
@@ -500,7 +499,7 @@ Matchers filter which events trigger a hook. Not all hooks support matchers — 
 | `CwdChanged` | — | No matcher support | Always fires |
 | `FileChanged` | `filename` (basename) | Pipe-separated basenames: `.envrc`, `.env`, `.env.local` | `"matcher": ".envrc\|.env"` |
 | `Setup` | — | No matcher support | Always fires |
-| `PermissionDenied` | — | No matcher support | Always fires |
+| `PermissionDenied` | `tool_name` | Tool names (same as PreToolUse) | `"matcher": "Bash"` |
 
 ## Known Issues & Workarounds
 
@@ -552,7 +551,7 @@ Different hooks use different output schemas for blocking or controlling executi
 
 | Hook(s) | Control Method | Values |
 |---------|---------------|--------|
-| PreToolUse | `hookSpecificOutput.permissionDecision` | `allow`, `deny`, `ask` |
+| PreToolUse | `hookSpecificOutput.permissionDecision` | `allow`, `deny`, `ask`, `defer` (headless `-p` mode only, v2.1.89+) |
 | PreToolUse | `hookSpecificOutput.autoAllow` | `true` — auto-approve future uses of this tool (since v2.0.76) |
 | PermissionRequest | `hookSpecificOutput.decision.behavior` | `allow`, `deny` |
 | Stop, SubagentStop, ConfigChange | Top-level `decision` | `block` |
@@ -561,6 +560,7 @@ Different hooks use different output schemas for blocking or controlling executi
 | WorktreeCreate | Non-zero exit + stdout path | Non-zero exit fails creation; stdout provides worktree path |
 | Elicitation | `hookSpecificOutput.action` + `hookSpecificOutput.content` | `accept`, `decline`, `cancel` — control MCP elicitation response |
 | ElicitationResult | `hookSpecificOutput.action` + `hookSpecificOutput.content` | `accept`, `decline`, `cancel` — override user response before sending to server |
+| PermissionDenied | `hookSpecificOutput.retry` | `true` — signal that model may retry the denied tool call (v2.1.89+) |
 
 ### Universal JSON Output Fields
 

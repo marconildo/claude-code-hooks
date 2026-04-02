@@ -407,3 +407,19 @@
 | 1 | MEDIUM | Config Drift | Fix HOOKS-README line 178: "not all 26" → "not all 27" (stale after PermissionDenied addition) | ✅ COMPLETE (updated to "not all 27") |
 | 2 | LOW | New Feature | Document PreToolUse "defer" permission decision (v2.1.89, headless resume) in HOOKS-README Decision Control table | ✋ ON HOLD (not yet in official docs pages — only in GitHub changelog; will document when docs update) |
 | 3 | LOW | Agent Hook Docs | Re-test agent frontmatter hooks when upstream #27153 resolves | ✋ ON HOLD (recurring since 2026-02-20; upstream issue [#27153](https://github.com/anthropics/claude-code/issues/27153) still open) |
+
+---
+
+## [2026-04-02 09:24 PM PKT] Claude Code v2.1.90
+
+| # | Priority | Type | Action | Status |
+|---|----------|------|--------|--------|
+| 1 | HIGH | Not-in-Docs Table | Remove PermissionDenied from HOOKS-README Not-in-Docs table — now confirmed in official hooks reference and guide; update Setup note from "(25 hooks listed, Setup and PermissionDenied excluded)" to "(26 hooks listed, Setup excluded)" | ✅ COMPLETE (removed PermissionDenied row, updated Setup note) |
+| 2 | HIGH | Hook Options Table | Add `tool_name`, `tool_input`, `tool_use_id`, `reason` to PermissionDenied Options column in HOOKS-README (confirmed by schema and official docs) | ✅ COMPLETE (added 4 input fields to Options column) |
+| 3 | HIGH | Matcher/Schema | Fix PermissionDenied matcher in HOOKS-README Per-Hook Matcher Reference — line 503 says "No matcher support" but official docs confirm tool_name matcher (same as PreToolUse/PostToolUse/PostToolUseFailure/PermissionRequest) | ✅ COMPLETE (updated to tool_name matcher with example) |
+| 4 | MEDIUM | New Feature | Document PreToolUse "defer" permission decision in HOOKS-README Decision Control table — now confirmed in official hooks guide and reference (v2.1.89, headless resume) | ✅ COMPLETE (added `defer` to PreToolUse permissionDecision values + added PermissionDenied retry row) |
+| 5 | MEDIUM | Can-Block Status | PermissionDenied can-block — official docs say "Cannot block but can signal retry" but presentation has "Can Block" badge and summary list includes it | ✅ COMPLETE (changed presentation badge to "Cannot Block", removed from summary can-block list) |
+| 6 | LOW | Config Drift | Fix HOOKS-README line 47 stale count: "Not all 26 hooks are supported" → "Not all 27 hooks are supported" | ✅ COMPLETE (updated to "Not all 27") |
+| 7 | LOW | Config Drift | Fix HOOKS-README line 186 stale count: "remaining 10 hooks" → "remaining 21 hooks" (27 - 6 = 21) | ✅ COMPLETE (updated to "remaining 21") |
+| 8 | MEDIUM | Workflow Fix | Root cause: workflow-add-hook only updates structured locations (heading, numbered list) but never sweeps for prose-embedded count references. Added Step 6 "Stale Count Sweep" to workflow-add-hook and Rule 7A/7B to verification checklist | ✅ COMPLETE (updated workflow-add-hook.md, workflow-changelog.md, and verification-checklist.md) |
+| 9 | LOW | Agent Hook Docs | Re-test agent frontmatter hooks when upstream #27153 resolves | ✋ ON HOLD (recurring since 2026-02-20; upstream issue [#27153](https://github.com/anthropics/claude-code/issues/27153) still open) |
