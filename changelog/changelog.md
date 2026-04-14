@@ -440,3 +440,22 @@
 |---|----------|------|--------|--------|
 | 1 | MEDIUM | Presentation | Fix PermissionDenied slide 31 stale text: remove "Not yet in official hooks reference — changelog and schema only" (now in official docs since v2.1.90 run confirmed) | ✅ COMPLETE (removed stale text from slide 31 line 2354) |
 | 2 | LOW | Agent Hook Docs | Re-test agent frontmatter hooks when upstream #27153 resolves | ✋ ON HOLD (recurring since 2026-02-20; upstream issue [#27153](https://github.com/anthropics/claude-code/issues/27153) still open) |
+
+---
+
+## [2026-04-14 11:38 PM PKT] Claude Code v2.1.107
+
+| # | Priority | Type | Action | Status |
+|---|----------|------|--------|--------|
+| 1 | HIGH | Can-Block Fix | PreCompact: change presentation badge from "Cannot Block" to "Can Block" (v2.1.105 changed can-block status) | ✅ COMPLETE (changed badge class and text on slide 15) |
+| 2 | HIGH | Can-Block Fix | Add PreCompact to presentation summary "Hooks That Can Block" list (lines 2589-2601) | ✅ COMPLETE (added PreCompact to summary list) |
+| 3 | HIGH | Decision Control | Add PreCompact to HOOKS-README Decision Control table — exit code 2 or `{"decision":"block"}` blocks compaction | ✅ COMPLETE (added row to Decision Control table) |
+| 4 | MEDIUM | Hook Options Table | Stop: add `stop_reason` input field to Options column (per official docs) | ✅ COMPLETE (added to Options column) |
+| 5 | MEDIUM | Hook Options Table | StopFailure: update `error`/`error_details` → `error_type`/`error_message` (per official docs) | ✅ COMPLETE (renamed fields in Options column) |
+| 6 | MEDIUM | Hook Options Table | ConfigChange: update `source` → `config_source` (per official docs) | ✅ COMPLETE (renamed in Options column + matcher table) |
+| 7 | MEDIUM | Hook Options Table | Elicitation: update `mcp_server_name` → `server_name`, `form_fields` → `elicitation_schema` (per official docs) | ✅ COMPLETE (renamed in Options column + matcher table) |
+| 8 | MEDIUM | Hook Options Table | ElicitationResult: update `mcp_server_name` → `server_name`, remove `form_fields` (per official docs) | ✅ COMPLETE (renamed + removed in Options column + matcher table) |
+| 9 | MEDIUM | Hook Options Table | WorktreeCreate: remove `worktree_name`/`base_branch`, add `isolation_reason` (per official docs) | ✅ COMPLETE (replaced fields in Options column) |
+| 10 | MEDIUM | Hook Options Table | WorktreeRemove: remove `worktree_name`, add `removal_reason` (per official docs) | ✅ COMPLETE (replaced field in Options column) |
+| 11 | MEDIUM | Hook Options Table | FileChanged: update `change_type` → `changed_reason` (per official docs) | ✅ COMPLETE (renamed in Options column) |
+| 12 | LOW | Agent Hook Docs | Re-test agent frontmatter hooks when upstream #27153 resolves | ✋ ON HOLD (recurring since 2026-02-20; upstream issue [#27153](https://github.com/anthropics/claude-code/issues/27153) still open) |
