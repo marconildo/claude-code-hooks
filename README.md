@@ -1,5 +1,5 @@
 # Claude Code Hooks
-[![Hooks](https://img.shields.io/badge/supports%20all-26%20hooks-white?style=flat&labelColor=555)](https://github.com/shanraisshan/claude-code-hooks/blob/main/.claude/hooks/HOOKS-README.md#hook-events-overview---official-26-hooks) [![Version](https://img.shields.io/badge/updated%20with%20Claude%20Code-v2.1.87%20(Mar%2029%2C%202026%207:47%20PM%20PKT)-white?style=flat&labelColor=555)](https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md) [![Stars](https://img.shields.io/github/stars/shanraisshan/claude-code-hooks?style=flat&label=%E2%98%85&labelColor=555&color=white)](https://github.com/shanraisshan/claude-code-hooks)
+[![Hooks](https://img.shields.io/badge/supports%20all-26%20hooks-white?style=flat&labelColor=555)](https://github.com/shanraisshan/claude-code-hooks/blob/main/.claude/hooks/HOOKS-README.md#hook-events-overview---official-26-hooks) [![Version](https://img.shields.io/badge/updated%20with%20Claude%20Code-v2.1.114%20(Apr%2019%2C%202026%2012:40%20PM%20PKT)-white?style=flat&labelColor=555)](https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md) [![Stars](https://img.shields.io/github/stars/shanraisshan/claude-code-hooks?style=flat&label=%E2%98%85&labelColor=555&color=white)](https://github.com/shanraisshan/claude-code-hooks)
 
 <p align="center">
   <img src="!/claude-speaking.svg" alt="Claude Code mascot speaking" width="168" height="108">
@@ -92,4 +92,14 @@ new hook addition changelogs only
 |---------|-------------|
 | /workflows:workflow-changelog | Scan for new hooks and drift across all files |
 | /workflows:workflow-add-hook <HookName>* | Add any recommended hook across all files in one command |
+
+<p align="center">
+  <img src="!/claude-jumping.svg" alt="section divider" width="60" height="50">
+</p>
+
+## <img src="!/tags/sponsor-heart.svg" width="22" height="22" align="center"> Sponsor My Work
+
+If you like my work, buy me a doodh patti 🍵 on
+
+<a href="https://buy.polar.sh/polar_cl_cIMlrzYRInDIRBSWU9kSsxaTbiAQm3AVayOot4DIrt8"><img src="!/tags/polar.svg" alt="Polar" width="40" height="40" align="center"></a> <a href="https://buy.polar.sh/polar_cl_cIMlrzYRInDIRBSWU9kSsxaTbiAQm3AVayOot4DIrt8"><strong>Polar</strong></a>
 
